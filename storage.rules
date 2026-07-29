@@ -1,0 +1,11 @@
+rules_version = '2';
+
+// Assets are served via short-lived signed URLs generated server-side
+// (lib/storage.ts), so direct client access stays locked down.
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

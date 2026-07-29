@@ -1,0 +1,40 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Nonprofit library assets: public read, admin-only writes (via Admin SDK).
+    match /artifacts/{appId}/public/data/nonprofit_library/{assetId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Time-synced media reactions: public read, constrained public create.
+    match /artifacts/{appId}/public/data/media_reactions/{reactionId} {
+      allow read: if true;
+      allow create: if request.resource.data.keys().hasAll(['mediaId', 'timeSeconds', 'comment'])
+                    && request.resource.data.comment is string
+                    && request.resource.data.comment.size() > 0
+                    && request.resource.data.comment.size() <= 280
+                    && request.resource.data.timeSeconds is number
+                    && request.resource.data.timeSeconds >= 0;
+      allow update, delete: if false;
+    }
+
+    // Subscribers: written server-side only (Admin SDK bypasses rules).
+    // Never readable from the client — protects the email list.
+    match /artifacts/{appId}/public/data/subscribers/{subscriberId} {
+      allow read, write: if false;
+    }
+
+    // Donation events: server-side only.
+    match /artifacts/{appId}/public/data/donation_events/{eventId} {
+      allow read, write: if false;
+    }
+
+    // Default deny.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

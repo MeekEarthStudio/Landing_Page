@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-lime: #00e676;
+  --brand-neon: #00ff66;
+  --brand-blue: #2563eb;
+  --brand-royal: #2a3bff;
+  --brand-slate: #1e3a5f;
+  --brand-deep: #0f2922;
+  --brand-ink: #0f172a;
+}
+
+body {
+  @apply bg-white text-brand-ink antialiased;
+}
+
+::selection {
+  background: var(--brand-lime);
+  color: var(--brand-deep);
+}

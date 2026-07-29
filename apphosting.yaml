@@ -1,0 +1,42 @@
+# Firebase App Hosting backend configuration
+# https://firebase.google.com/docs/app-hosting/configure
+runConfig:
+  minInstances: 0
+  maxInstances: 4
+  concurrency: 80
+  cpu: 1
+  memoryMiB: 512
+
+env:
+  - variable: NEXT_PUBLIC_APP_ID
+    value: meek-earth-studio
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: GCS_ASSETS_BUCKET
+    value: meek-earth-assets
+    availability:
+      - RUNTIME
+
+  - variable: BIGQUERY_DATASET
+    value: meek_earth_analytics
+    availability:
+      - RUNTIME
+
+  # Secrets pulled from GCP Secret Manager (grant the App Hosting
+  # service account roles/secretmanager.secretAccessor):
+  - variable: CONVERTKIT_API_KEY
+    secret: CONVERTKIT_API_KEY
+    availability:
+      - RUNTIME
+
+  - variable: STRIPE_WEBHOOK_SECRET
+    secret: STRIPE_WEBHOOK_SECRET
+    availability:
+      - RUNTIME
+
+  - variable: SENDGRID_API_KEY
+    secret: SENDGRID_API_KEY
+    availability:
+      - RUNTIME
