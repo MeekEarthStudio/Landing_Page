@@ -1,12 +1,23 @@
 import { NextResponse } from "next/server";
 import { createHmac, timingSafeEqual } from "crypto";
 import { getAdminDb, PUBLIC_DATA_PATH } from "@/lib/firebaseAdmin";
+import { getClientIp, rateLimit, tooManyRequests } from "@/lib/rateLimit";
 
 /**
  * Handles payment/donation webhooks (e.g. Stripe).
  * Verifies the HMAC signature before recording the event.
+ * Generous limit — real payment providers batch-retry, but signature
+ * forgery attempts shouldn't get unlimited HMAC computations.
  */
 export async function POST(req: Request) {
+  const limited = await rateLimit({
+    name: "webhooks",
+    id: getClientIp(req),
+    limit: 120,
+    windowSeconds: 60,
+  });
+  if (!limited.ok) return tooManyRequests(limited);
+
   const secret = process.env.STRIPE_WEBHOOK_SECRET;
   const payload = await req.text();
   const signature = req.headers.get("stripe-signature") ?? req.headers.get("x-webhook-signature");

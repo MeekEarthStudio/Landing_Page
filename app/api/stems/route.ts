@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAdminDb, PUBLIC_DATA_PATH } from "@/lib/firebaseAdmin";
 import { getSignedDownloadUrl } from "@/lib/storage";
+import { getClientIp, rateLimit, tooManyRequests } from "@/lib/rateLimit";
 
 /**
  * Validates an email-gate token and returns a short-lived GCS signed URL
@@ -9,6 +10,15 @@ import { getSignedDownloadUrl } from "@/lib/storage";
  *   GET /api/stems?token=<subscriberToken>&file=audio/neon_horizon_stem.wav
  */
 export async function GET(req: Request) {
+  // Signed-URL minting costs real GCS calls — keep bots off it.
+  const limited = await rateLimit({
+    name: "stems",
+    id: getClientIp(req),
+    limit: 30,
+    windowSeconds: 60,
+  });
+  if (!limited.ok) return tooManyRequests(limited);
+
   const { searchParams } = new URL(req.url);
   const token = searchParams.get("token");
   const file = searchParams.get("file");

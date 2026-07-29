@@ -113,6 +113,19 @@ In Hostinger's DNS panel, add the records Firebase shows you:
 
 SSL provisions automatically once DNS propagates.
 
+## Rate limiting
+
+API routes are rate limited per IP out of the box (subscribe: 5/min,
+stems: 30/min, webhooks: 120/min) using in-memory counters — see
+`lib/rateLimit.ts`. Counters are per Cloud Run instance; with
+`maxInstances: 4` an attacker gets at most 4× the limit.
+
+To enforce limits globally across all instances, create a free Redis
+database at [upstash.com](https://upstash.com) and set
+`UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` (store the token in
+Secret Manager for production). The limiter switches over automatically —
+no code changes.
+
 ## Verify
 
 - Visit the `*.hosted.app` URL App Hosting gives you.

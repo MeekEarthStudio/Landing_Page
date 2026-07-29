@@ -1,12 +1,22 @@
 import { NextResponse } from "next/server";
 import { randomUUID } from "crypto";
 import { getAdminDb, PUBLIC_DATA_PATH } from "@/lib/firebaseAdmin";
+import { getClientIp, rateLimit, tooManyRequests } from "@/lib/rateLimit";
 
 const VALID_CATEGORIES = ["music", "documentary", "nonprofit"] as const;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /** Handles email sign-ups → Firestore subscribers collection. */
 export async function POST(req: Request) {
+  // A human signs up once or twice; anything faster is a bot.
+  const limited = await rateLimit({
+    name: "subscribe",
+    id: getClientIp(req),
+    limit: 5,
+    windowSeconds: 60,
+  });
+  if (!limited.ok) return tooManyRequests(limited);
+
   let body: { email?: string; sourceCategory?: string };
   try {
     body = await req.json();
