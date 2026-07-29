@@ -13,7 +13,7 @@ npm install -g firebase-tools
 Optional but useful for Secret Manager:
 [Install the gcloud CLI](https://cloud.google.com/sdk/docs/install).
 
-## 1. Firebase project — `meek-earth-email-capture`
+## 1. Firebase project — `meek-earth-email-capture-94556`
 
 The GCP project already exists, and `.firebaserc` in this repo already points
 the Firebase CLI at it. If the project doesn't have Firebase enabled yet
@@ -21,7 +21,7 @@ the Firebase CLI at it. If the project doesn't have Firebase enabled yet
 
 ```bash
 firebase login
-firebase projects:addfirebase meek-earth-email-capture
+firebase projects:addfirebase meek-earth-email-capture-94556
 ```
 
 ## 2. Enable the GCP APIs
@@ -37,7 +37,7 @@ for the same project, enable:
 Or with gcloud, all at once:
 
 ```bash
-gcloud services enable apphosting.googleapis.com firestore.googleapis.com cloudfunctions.googleapis.com storage.googleapis.com bigquery.googleapis.com analyticsdata.googleapis.com secretmanager.googleapis.com cloudbuild.googleapis.com --project meek-earth-email-capture
+gcloud services enable apphosting.googleapis.com firestore.googleapis.com cloudfunctions.googleapis.com storage.googleapis.com bigquery.googleapis.com analyticsdata.googleapis.com secretmanager.googleapis.com cloudbuild.googleapis.com --project meek-earth-email-capture-94556
 ```
 
 ## 3. Create Firestore + the assets bucket
@@ -46,7 +46,7 @@ gcloud services enable apphosting.googleapis.com firestore.googleapis.com cloudf
 - Firebase Console → **Storage**, or create the private assets bucket:
 
 ```bash
-gcloud storage buckets create gs://meek-earth-assets --project meek-earth-email-capture --location us-central1 --uniform-bucket-level-access
+gcloud storage buckets create gs://meek-earth-assets --project meek-earth-email-capture-94556 --location us-central1 --uniform-bucket-level-access
 ```
 
 Deploy the security rules and indexes from this repo:
@@ -58,9 +58,9 @@ firebase deploy --only firestore:rules,firestore:indexes,storage
 ## 4. Store secrets in Secret Manager
 
 ```bash
-echo -n "YOUR_KEY" | gcloud secrets create CONVERTKIT_API_KEY --data-file=- --project meek-earth-email-capture
-echo -n "YOUR_KEY" | gcloud secrets create STRIPE_WEBHOOK_SECRET --data-file=- --project meek-earth-email-capture
-echo -n "YOUR_KEY" | gcloud secrets create SENDGRID_API_KEY --data-file=- --project meek-earth-email-capture
+echo -n "YOUR_KEY" | gcloud secrets create CONVERTKIT_API_KEY --data-file=- --project meek-earth-email-capture-94556
+echo -n "YOUR_KEY" | gcloud secrets create STRIPE_WEBHOOK_SECRET --data-file=- --project meek-earth-email-capture-94556
+echo -n "YOUR_KEY" | gcloud secrets create SENDGRID_API_KEY --data-file=- --project meek-earth-email-capture-94556
 ```
 
 `apphosting.yaml` already references these; App Hosting will prompt you to
@@ -95,7 +95,7 @@ secrets at
 
 - `FIREBASE_SERVICE_ACCOUNT` — a service-account JSON from the Firebase
   project (Project settings → Service accounts → Generate new private key)
-- `FIREBASE_PROJECT_ID` — `meek-earth-email-capture`
+- `FIREBASE_PROJECT_ID` — `meek-earth-email-capture-94556`
 
 ## 7. Wire up the web app config
 

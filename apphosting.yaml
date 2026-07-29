@@ -31,12 +31,15 @@ env:
     availability:
       - RUNTIME
 
-  - variable: STRIPE_WEBHOOK_SECRET
-    secret: STRIPE_WEBHOOK_SECRET
-    availability:
-      - RUNTIME
-
-  - variable: SENDGRID_API_KEY
-    secret: SENDGRID_API_KEY
-    availability:
-      - RUNTIME
+  # Re-enable these when the keys exist — create each with:
+  #   firebase apphosting:secrets:set <NAME> --project meek-earth-email-capture-94556
+  #
+  # - variable: STRIPE_WEBHOOK_SECRET
+  #   secret: STRIPE_WEBHOOK_SECRET
+  #   availability:
+  #     - RUNTIME
+  #
+  # - variable: SENDGRID_API_KEY
+  #   secret: SENDGRID_API_KEY
+  #   availability:
+  #     - RUNTIME
