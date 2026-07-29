@@ -74,28 +74,35 @@ echo -n "YOUR_KEY" | gcloud secrets create SENDGRID_API_KEY --data-file=- --proj
 grant its service account access on first deploy (or grant
 `roles/secretmanager.secretAccessor` manually).
 
-## 5. Push the repo to GitHub
+## 5. GitHub repo — ✅ done
 
-The local git repo is already initialized and committed. Create an empty repo
-on GitHub, then:
+The code lives at
+[github.com/MeekEarthStudio/Landing_Page](https://github.com/MeekEarthStudio/Landing_Page),
+and the local repo tracks it (`origin/main`). Publishing changes is just:
 
 ```bash
-git remote add origin https://github.com/YOUR_USERNAME/meek-earth-studio.git
-git push -u origin main
+git push
 ```
 
 ## 6. Create the App Hosting backend
 
 Firebase Console → **App Hosting** → *Get started*:
 
-1. Connect your GitHub account and select the repo.
+1. Connect your GitHub account and select **MeekEarthStudio/Landing_Page**.
 2. Set live branch: `main`, root directory: `/`.
 3. Firebase auto-detects Next.js and reads `apphosting.yaml`.
 
 Every push to `main` now builds (Cloud Build) and deploys automatically.
-The GitHub Actions workflow in `.github/workflows/deploy-firebase.yml` adds a
-build gate on PRs; for its rules-deploy job, add two repo secrets on GitHub:
-`FIREBASE_SERVICE_ACCOUNT` (service-account JSON) and `FIREBASE_PROJECT_ID`.
+
+The GitHub Actions workflow in `.github/workflows/deploy-firebase.yml` runs a
+build gate on every push and PR — that job already works. Its second job
+(deploying Firestore/Storage rules) stays red until you add two repository
+secrets at
+[Settings → Secrets and variables → Actions](https://github.com/MeekEarthStudio/Landing_Page/settings/secrets/actions):
+
+- `FIREBASE_SERVICE_ACCOUNT` — a service-account JSON from the Firebase
+  project (Project settings → Service accounts → Generate new private key)
+- `FIREBASE_PROJECT_ID` — the project ID from step 1
 
 ## 7. Wire up the web app config
 
