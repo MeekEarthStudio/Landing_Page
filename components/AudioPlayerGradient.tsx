@@ -127,6 +127,11 @@ export default function AudioPlayerGradient({
           <p className="text-sm text-brand-lime/80">{artist}</p>
         </div>
         <span className="ml-auto text-xs tabular-nums text-white/60">
+          {!src && (
+            <span className="mr-2 rounded bg-white/10 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-brand-lime/80">
+              preview — no audio yet
+            </span>
+          )}
           {fmt(time)} / {fmt(duration)}
         </span>
       </div>

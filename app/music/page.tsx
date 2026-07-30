@@ -24,6 +24,7 @@ export default function MusicPage() {
   const [gateOpen, setGateOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [signedUrls, setSignedUrls] = useState<Record<string, string>>({});
+  const [streamingDown, setStreamingDown] = useState(false);
 
   useEffect(() => {
     setToken(getStoredAccessToken());
@@ -50,7 +51,9 @@ export default function MusicPage() {
         }),
       );
       if (!cancelled) {
-        setSignedUrls(Object.fromEntries(entries.filter(([, url]) => url)));
+        const ok = entries.filter(([, url]) => url);
+        setSignedUrls(Object.fromEntries(ok));
+        setStreamingDown(ok.length === 0);
       }
     })();
     return () => {
@@ -85,6 +88,14 @@ export default function MusicPage() {
         <p className="mb-8 inline-flex items-center gap-2 rounded-full bg-brand-lime/15 px-5 py-2.5 text-sm font-semibold text-brand-deep">
           <Unlock size={15} className="text-brand-lime" /> Access unlocked — welcome back.
         </p>
+      )}
+
+      {mounted && unlocked && streamingDown && (
+        <div className="mb-8 rounded-xl border border-amber-300 bg-amber-50 px-5 py-4 text-sm text-amber-900">
+          <strong>Streaming is warming up.</strong> Your access is confirmed, but the audio
+          server isn&apos;t reachable right now — playback will work once the cloud storage
+          connection is live. Check back soon.
+        </div>
       )}
 
       <div className="space-y-6">
