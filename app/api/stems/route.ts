@@ -11,14 +11,14 @@ import { getClientIp, rateLimit, tooManyRequests } from "@/lib/rateLimit";
  *   GET /api/stems?token=<unlockToken>&file=Freedom.wav
  */
 export async function GET(req: Request) {
-  // Signed-URL minting costs real GCS calls — keep bots off it.
-  const limited = await rateLimit({
-    name: "stems",
-    id: getClientIp(req),
-    limit: 30,
-    windowSeconds: 60,
-  });
-  if (!limited.ok) return tooManyRequests(limited);
+  // Signed-URL minting costs real GCS calls, and this route is the only
+  // server-side gate on media access — dual windows: burst (30/min) and
+  // sustained scraping (240/hour; normal listening is ~32/hour).
+  const ip = getClientIp(req);
+  const burst = await rateLimit({ name: "stems", id: ip, limit: 30, windowSeconds: 60 });
+  if (!burst.ok) return tooManyRequests(burst);
+  const hourly = await rateLimit({ name: "stems-h", id: ip, limit: 240, windowSeconds: 3600 });
+  if (!hourly.ok) return tooManyRequests(hourly);
 
   const { searchParams } = new URL(req.url);
   const token = searchParams.get("token");

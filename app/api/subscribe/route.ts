@@ -8,14 +8,13 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /** Handles email sign-ups → Kit (ConvertKit). */
 export async function POST(req: Request) {
-  // A human signs up once or twice; anything faster is a bot.
-  const limited = await rateLimit({
-    name: "subscribe",
-    id: getClientIp(req),
-    limit: 5,
-    windowSeconds: 60,
-  });
-  if (!limited.ok) return tooManyRequests(limited);
+  // A human signs up once or twice; anything faster is a bot. Dual
+  // windows: burst (5/min) and slow-drip (15/hour) protection.
+  const ip = getClientIp(req);
+  const burst = await rateLimit({ name: "subscribe", id: ip, limit: 5, windowSeconds: 60 });
+  if (!burst.ok) return tooManyRequests(burst);
+  const hourly = await rateLimit({ name: "subscribe-h", id: ip, limit: 15, windowSeconds: 3600 });
+  if (!hourly.ok) return tooManyRequests(hourly);
 
   let body: { email?: string; sourceCategory?: string };
   try {
