@@ -43,11 +43,10 @@ gcloud services enable apphosting.googleapis.com firestore.googleapis.com cloudf
 ## 3. Create Firestore + the assets bucket
 
 - Firebase Console → **Firestore Database** → Create database (production mode).
-- Firebase Console → **Storage**, or create the private assets bucket:
-
-```bash
-gcloud storage buckets create gs://meek-earth-assets --project meek-earth-email-capture-94556 --location us-central1 --uniform-bucket-level-access
-```
+- Audio/video files live in the Firebase default bucket
+  (`meek-earth-email-capture-94556.firebasestorage.app`) — upload via
+  Firebase Console → **Storage** → Files. The app reads the bucket name
+  from `GCS_ASSETS_BUCKET` in `apphosting.yaml`.
 
 Deploy the security rules and indexes from this repo:
 

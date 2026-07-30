@@ -13,7 +13,8 @@ function getStorage(): Storage {
   return storage;
 }
 
-export const ASSETS_BUCKET = process.env.GCS_ASSETS_BUCKET ?? "meek-earth-assets";
+export const ASSETS_BUCKET =
+  process.env.GCS_ASSETS_BUCKET ?? "meek-earth-email-capture-94556.firebasestorage.app";
 
 /**
  * Generate a short-lived signed URL for a private object

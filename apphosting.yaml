@@ -15,7 +15,7 @@ env:
       - RUNTIME
 
   - variable: GCS_ASSETS_BUCKET
-    value: meek-earth-assets
+    value: meek-earth-email-capture-94556.firebasestorage.app
     availability:
       - RUNTIME
 
