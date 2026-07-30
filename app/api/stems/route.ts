@@ -26,8 +26,12 @@ export async function GET(req: Request) {
   if (!token || !file) {
     return NextResponse.json({ error: "token and file are required" }, { status: 400 });
   }
-  // Prevent path tricks — only allow simple object paths under known prefixes.
-  if (!/^(audio|video|docs)\/[\w\-./]+$/.test(file) || file.includes("..")) {
+  // Prevent path tricks — allow media files at the bucket root or under
+  // the audio/, video/, docs/ prefixes, with a known media extension.
+  if (
+    !/^(?:(?:audio|video|docs)\/)?[\w\- .]+\.(?:wav|mp3|flac|mp4|mov|pdf)$/i.test(file) ||
+    file.includes("..")
+  ) {
     return NextResponse.json({ error: "Invalid file path" }, { status: 400 });
   }
 

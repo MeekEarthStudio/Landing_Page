@@ -11,32 +11,26 @@ export default function DocumentaryPage() {
         </p>
         <h1 className="text-4xl font-bold text-brand-ink">The Documentary</h1>
         <p className="mt-3 max-w-xl text-brand-slate">
-          Follow the journey from studio sessions to the front lines of restoration work.
-          Reactions light up in real time as the timeline reaches each moment.
+          The film is in production. When it premieres here, reactions will light up in
+          real time as the timeline reaches each moment — stay tuned.
         </p>
       </header>
 
       <VideoPlayerDocumentary
-        mediaId="meek_earth_documentary_ep1"
-        title="Meek Earth: Roots — Episode 1"
+        mediaId="meek_earth_documentary"
+        title="Meek Earth Documentary — Stay Tuned"
       />
 
       <section className="mt-12 grid gap-6 md:grid-cols-3">
-        {[
-          ["Episode 1 — Roots", "Where the sound began: field recordings and first sessions."],
-          ["Episode 2 — Currents", "Scoring the ocean restoration expedition. Coming soon."],
-          ["Episode 3 — Canopy", "The reforestation anthem, from seed to stage. Coming soon."],
-        ].map(([title, body], i) => (
+        {[1, 2, 3].map((n) => (
           <div
-            key={title}
-            className={`rounded-xl border p-5 ${
-              i === 0
-                ? "border-brand-lime bg-brand-lime/5"
-                : "border-brand-slate/15 bg-white opacity-70"
-            }`}
+            key={n}
+            className="flex flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-brand-slate/25 bg-slate-50 p-8"
           >
-            <h3 className="font-semibold text-brand-ink">{title}</h3>
-            <p className="mt-1 text-sm text-brand-slate">{body}</p>
+            <h3 className="font-semibold text-brand-ink">Episode {n}</h3>
+            <p className="font-serif text-xs tracking-[0.3em] text-brand-slate uppercase">
+              Stay Tuned
+            </p>
           </div>
         ))}
       </section>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Music, Film, HeartHandshake, ArrowRight, Sparkles } from "lucide-react";
+import { Music, Film, BookOpen, ArrowRight, Sparkles } from "lucide-react";
 import { staggerContainer, fadeUp } from "@/lib/animations";
 
 const PILLARS = [
@@ -10,22 +10,22 @@ const PILLARS = [
     href: "/music",
     icon: Music,
     title: "Unreleased Music",
-    body: "Stream exclusive stems and drop time-synced reactions right on the waveform.",
-    cta: "Enter the stem locker",
+    body: "Eight unreleased songs streaming from the vault — drop time-synced reactions right on the waveform.",
+    cta: "Listen now",
   },
   {
     href: "/documentary",
     icon: Film,
     title: "Interactive Documentary",
-    body: "Watch the story unfold and react moment-by-moment alongside the community.",
-    cta: "Watch the film",
+    body: "The film is in production. When it premieres, react moment-by-moment alongside the community.",
+    cta: "Stay tuned",
   },
   {
-    href: "/library",
-    icon: HeartHandshake,
-    title: "Free Nonprofit Library",
-    body: "Rights-cleared music, footage, and toolkits — free for organizations doing good.",
-    cta: "Browse the library",
+    href: "/blog",
+    icon: BookOpen,
+    title: "The Blog",
+    body: "Stories from the studio — the music, the faith behind it, and the road ahead.",
+    cta: "Visit the blog",
   },
 ];
 
@@ -61,21 +61,21 @@ export default function LandingPage() {
             </span>
           </motion.h1>
           <motion.p variants={fadeUp} className="mx-auto mt-6 max-w-2xl text-lg text-brand-slate">
-            A next-generation home for unreleased music, interactive documentary film, and a
-            free creative arsenal for the nonprofits healing our planet.
+            A next-generation home for unreleased music, interactive documentary film, and
+            stories from the studio.
           </motion.p>
           <motion.div variants={fadeUp} className="mt-10 flex flex-wrap justify-center gap-4">
             <Link
               href="/music"
               className="inline-flex items-center gap-2 rounded-full bg-brand-lime px-7 py-3.5 font-semibold text-brand-deep shadow-lg shadow-brand-lime/25 transition hover:brightness-110"
             >
-              Listen to unreleased stems <ArrowRight size={17} />
+              Listen to unreleased tracks <ArrowRight size={17} />
             </Link>
             <Link
-              href="/library"
+              href="/blog"
               className="inline-flex items-center gap-2 rounded-full bg-brand-blue px-7 py-3.5 font-semibold text-white shadow-lg shadow-brand-blue/25 transition hover:brightness-110"
             >
-              Free nonprofit toolkit
+              Read the blog
             </Link>
           </motion.div>
         </motion.div>
@@ -110,17 +110,16 @@ export default function LandingPage() {
         </motion.div>
       </section>
 
-      {/* Impact strip */}
+      {/* What's live strip */}
       <section className="bg-brand-deep py-16 text-white">
-        <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8 px-4 text-center md:grid-cols-4">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 px-4 text-center sm:grid-cols-3">
           {[
-            ["12k+", "Community listeners"],
-            ["340", "Nonprofits equipped"],
-            ["58", "Free assets released"],
-            ["$86k", "Raised for causes"],
+            ["8", "Unreleased tracks streaming now"],
+            ["Stay Tuned", "Documentary in production"],
+            ["Stay Tuned", "Blog launching soon"],
           ].map(([stat, label]) => (
             <div key={label}>
-              <p className="text-4xl font-bold text-brand-lime">{stat}</p>
+              <p className="font-serif text-3xl font-bold text-brand-lime">{stat}</p>
               <p className="mt-1 text-sm text-white/60">{label}</p>
             </div>
           ))}

@@ -11,13 +11,13 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif"
 export const metadata: Metadata = {
   title: "Meek Earth STUDIO — Music, Film & Impact",
   description:
-    "Unreleased music stems, interactive documentaries, and a free media library for nonprofits. Art that moves the planet forward.",
+    "Eight unreleased tracks streaming now, an interactive documentary in production, and stories from the studio. Stay tuned.",
 };
 
 const NAV = [
   { href: "/music", label: "Music" },
   { href: "/documentary", label: "Documentary" },
-  { href: "/library", label: "Nonprofit Library" },
+  { href: "/blog", label: "Blog" },
   { href: "/dashboard/artist", label: "Dashboards" },
 ];
 
@@ -54,7 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               Meek Earth Studio
             </p>
             <p className="max-w-md text-sm text-white/60">
-              Music, film, and free creative tools for the causes that keep the planet turning.
+              Music, film, and stories from the studio — more on the way. Stay tuned.
             </p>
             <p className="text-xs text-white/40">
               © {new Date().getFullYear()} Meek Earth STUDIO. All rights reserved.

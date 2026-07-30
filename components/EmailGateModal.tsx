@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Lock, Mail, X, Loader2, CheckCircle2 } from "lucide-react";
 
-export type SourceCategory = "music" | "documentary" | "nonprofit";
+export type SourceCategory = "music" | "documentary" | "nonprofit" | "blog";
 
 const TOKEN_KEY = "meek-earth-access-token";
 
@@ -80,8 +80,8 @@ export default function EmailGateModal({ open, onClose, onUnlocked, sourceCatego
               {headline ?? "Unlock exclusive access"}
             </h2>
             <p className="mt-2 text-sm text-brand-slate">
-              Drop your email to unlock unreleased stems, documentary cuts, and the free
-              nonprofit toolkit library. No spam — ever.
+              Drop your email to unlock the unreleased tracks and get first word when the
+              documentary and new posts drop. No spam — ever.
             </p>
 
             {status === "done" ? (

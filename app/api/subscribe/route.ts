@@ -4,7 +4,7 @@ import { getAdminDb, PUBLIC_DATA_PATH } from "@/lib/firebaseAdmin";
 import { getClientIp, rateLimit, tooManyRequests } from "@/lib/rateLimit";
 import { addKitSubscriber } from "@/lib/kit";
 
-const VALID_CATEGORIES = ["music", "documentary", "nonprofit"] as const;
+const VALID_CATEGORIES = ["music", "documentary", "nonprofit", "blog"] as const;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /** Handles email sign-ups → Firestore subscribers collection. */

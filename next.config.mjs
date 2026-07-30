@@ -7,6 +7,9 @@ const nextConfig = {
     ],
   },
   serverExternalPackages: ["firebase-admin", "@google-cloud/bigquery", "@google-cloud/storage"],
+  async redirects() {
+    return [{ source: "/library", destination: "/blog", permanent: true }];
+  },
 };
 
 export default nextConfig;

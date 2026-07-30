@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Play, Pause, MessageCircle } from "lucide-react";
+import TipButton from "@/components/TipButton";
 import { db, PUBLIC_DATA_PATH } from "@/lib/firebase";
 import {
   addDoc,
@@ -29,15 +30,9 @@ interface Props {
   durationFallback?: number;
 }
 
-const DEMO_REACTIONS: Reaction[] = [
-  { id: "d1", mediaId: "demo", timeSeconds: 14, comment: "Love the bass shift!" },
-  { id: "d2", mediaId: "demo", timeSeconds: 38, comment: "This drop is unreal 🌍" },
-  { id: "d3", mediaId: "demo", timeSeconds: 71, comment: "Putting this in my set" },
-];
-
 /**
  * Moving-gradient music player with SoundCloud-style timestamp reactions.
- * Reactions sync live via Firestore when configured; falls back to demo data.
+ * Reactions sync live via Firestore when configured.
  */
 export default function AudioPlayerGradient({
   mediaId,
@@ -50,8 +45,9 @@ export default function AudioPlayerGradient({
   const [playing, setPlaying] = useState(false);
   const [time, setTime] = useState(0);
   const [duration, setDuration] = useState(durationFallback);
-  const [reactions, setReactions] = useState<Reaction[]>(DEMO_REACTIONS);
+  const [reactions, setReactions] = useState<Reaction[]>([]);
   const [comment, setComment] = useState("");
+  const [hasPlayed, setHasPlayed] = useState(false);
 
   useEffect(() => {
     if (!db) return;
@@ -61,7 +57,7 @@ export default function AudioPlayerGradient({
     );
     return onSnapshot(q, (snap) => {
       const live = snap.docs.map((d) => ({ id: d.id, ...d.data() }) as Reaction);
-      if (live.length) setReactions(live.sort((a, b) => a.timeSeconds - b.timeSeconds));
+      setReactions(live.sort((a, b) => a.timeSeconds - b.timeSeconds));
     });
   }, [mediaId]);
 
@@ -71,6 +67,7 @@ export default function AudioPlayerGradient({
       if (playing) el.pause();
       else void el.play();
     }
+    if (!playing) setHasPlayed(true);
     setPlaying(!playing);
   }
 
@@ -184,6 +181,8 @@ export default function AudioPlayerGradient({
           Post
         </button>
       </form>
+
+      <TipButton show={hasPlayed} message="Enjoying the music? Leave a tip" />
     </div>
   );
 }
