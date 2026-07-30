@@ -1,13 +1,12 @@
 import { NextResponse } from "next/server";
 import { randomUUID } from "crypto";
-import { getAdminDb, PUBLIC_DATA_PATH } from "@/lib/firebaseAdmin";
 import { getClientIp, rateLimit, tooManyRequests } from "@/lib/rateLimit";
 import { addKitSubscriber } from "@/lib/kit";
 
 const VALID_CATEGORIES = ["music", "documentary", "nonprofit", "blog"] as const;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-/** Handles email sign-ups → Firestore subscribers collection. */
+/** Handles email sign-ups → Kit (ConvertKit). */
 export async function POST(req: Request) {
   // A human signs up once or twice; anything faster is a bot.
   const limited = await rateLimit({
@@ -35,23 +34,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid source category" }, { status: 400 });
   }
 
-  const token = randomUUID();
-
-  try {
-    const db = getAdminDb();
-    await db.collection(`${PUBLIC_DATA_PATH}/subscribers`).doc(token).set({
-      email,
-      sourceCategory,
-      createdAt: new Date(),
-    });
-  } catch (err) {
-    // No GCP credentials in local dev — allow the flow to continue so the
-    // front-end unlock experience still works. Log for visibility.
-    console.warn("[subscribe] Firestore unavailable, issuing local token:", err);
-  }
-
-  // Sync to Kit (ConvertKit) — non-fatal if unavailable.
+  // Kit is the system of record for the email list.
   const syncedToKit = await addKitSubscriber(email);
+
+  // Unlock token for the client's localStorage — gates the media UI.
+  const token = randomUUID();
 
   return NextResponse.json({ ok: true, token, syncedToKit });
 }

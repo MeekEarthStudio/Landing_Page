@@ -1,13 +1,14 @@
 import { NextResponse } from "next/server";
-import { getAdminDb, PUBLIC_DATA_PATH } from "@/lib/firebaseAdmin";
 import { getSignedDownloadUrl } from "@/lib/storage";
 import { getClientIp, rateLimit, tooManyRequests } from "@/lib/rateLimit";
 
 /**
- * Validates an email-gate token and returns a short-lived GCS signed URL
- * for a private stem file.
+ * Returns a short-lived GCS signed URL for a media file in the assets
+ * bucket. The email gate issues the client its token; presence of a
+ * token plus rate limiting keeps casual scraping out, while the bucket
+ * itself stays private (no public URLs).
  *
- *   GET /api/stems?token=<subscriberToken>&file=audio/neon_horizon_stem.wav
+ *   GET /api/stems?token=<unlockToken>&file=Freedom.wav
  */
 export async function GET(req: Request) {
   // Signed-URL minting costs real GCS calls — keep bots off it.
@@ -36,12 +37,6 @@ export async function GET(req: Request) {
   }
 
   try {
-    const db = getAdminDb();
-    const sub = await db.doc(`${PUBLIC_DATA_PATH}/subscribers/${token}`).get();
-    if (!sub.exists) {
-      return NextResponse.json({ error: "Invalid or expired access token" }, { status: 403 });
-    }
-
     const url = await getSignedDownloadUrl(file, 15);
     return NextResponse.json({ ok: true, url, expiresInMinutes: 15 });
   } catch (err) {

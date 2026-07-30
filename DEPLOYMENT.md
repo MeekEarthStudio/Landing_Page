@@ -40,18 +40,31 @@ Or with gcloud, all at once:
 gcloud services enable apphosting.googleapis.com firestore.googleapis.com cloudfunctions.googleapis.com storage.googleapis.com bigquery.googleapis.com analyticsdata.googleapis.com secretmanager.googleapis.com cloudbuild.googleapis.com --project meek-earth-email-capture-94556
 ```
 
-## 3. Create Firestore + the assets bucket
+## 3. Storage + streaming permissions
 
-- Firebase Console → **Firestore Database** → Create database (production mode).
-- Audio/video files live in the Firebase default bucket
-  (`meek-earth-email-capture-94556.firebasestorage.app`) — upload via
-  Firebase Console → **Storage** → Files. The app reads the bucket name
-  from `GCS_ASSETS_BUCKET` in `apphosting.yaml`.
+Audio/video files live in the Firebase default bucket
+(`meek-earth-email-capture-94556.firebasestorage.app`) — upload via
+Firebase Console → **Storage** → Files. The app reads the bucket name
+from `GCS_ASSETS_BUCKET` in `apphosting.yaml`.
 
-Deploy the security rules and indexes from this repo:
+Emails are collected by Kit (ConvertKit) — **Firestore is NOT required**
+for the email gate or audio playback. (The firestore.rules file in this
+repo is only for the optional live-reactions feature, if it's ever
+enabled later.)
+
+Grant the App Hosting runtime permission to read the bucket and mint
+signed streaming URLs (one-time):
 
 ```bash
-firebase deploy --only firestore:rules,firestore:indexes,storage
+gcloud storage buckets add-iam-policy-binding gs://meek-earth-email-capture-94556.firebasestorage.app --member=serviceAccount:firebase-app-hosting-compute@meek-earth-email-capture-94556.iam.gserviceaccount.com --role=roles/storage.objectViewer
+```
+
+```bash
+gcloud services enable iamcredentials.googleapis.com --project meek-earth-email-capture-94556
+```
+
+```bash
+gcloud iam service-accounts add-iam-policy-binding firebase-app-hosting-compute@meek-earth-email-capture-94556.iam.gserviceaccount.com --member=serviceAccount:firebase-app-hosting-compute@meek-earth-email-capture-94556.iam.gserviceaccount.com --role=roles/iam.serviceAccountTokenCreator
 ```
 
 ## 4. Store secrets in Secret Manager
