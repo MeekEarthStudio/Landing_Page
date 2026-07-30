@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { randomUUID } from "crypto";
 import { getAdminDb, PUBLIC_DATA_PATH } from "@/lib/firebaseAdmin";
 import { getClientIp, rateLimit, tooManyRequests } from "@/lib/rateLimit";
+import { addKitSubscriber } from "@/lib/kit";
 
 const VALID_CATEGORIES = ["music", "documentary", "nonprofit"] as const;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -49,5 +50,8 @@ export async function POST(req: Request) {
     console.warn("[subscribe] Firestore unavailable, issuing local token:", err);
   }
 
-  return NextResponse.json({ ok: true, token });
+  // Sync to Kit (ConvertKit) — non-fatal if unavailable.
+  const syncedToKit = await addKitSubscriber(email);
+
+  return NextResponse.json({ ok: true, token, syncedToKit });
 }
