@@ -1,128 +1,64 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Lock, Unlock } from "lucide-react";
-import AudioPlayerGradient from "@/components/AudioPlayerGradient";
-import EmailGateModal, { getStoredAccessToken } from "@/components/EmailGateModal";
-import { TRACKS, mediaIdFor } from "@/lib/tracks";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Music, Mic2, ArrowRight } from "lucide-react";
+import { staggerContainer, fadeUp } from "@/lib/animations";
 
-export default function MusicPage() {
-  const [token, setToken] = useState<string | null>(null);
-  const [gateOpen, setGateOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const [signedUrls, setSignedUrls] = useState<Record<string, string>>({});
-  const [streamingDown, setStreamingDown] = useState(false);
+const ARTISTS = [
+  {
+    href: "/music/carlton",
+    icon: Music,
+    name: "Carlton B Reid III",
+    blurb: "Eight original songs streaming from the studio vault — unlock them all with your email.",
+    cta: "Listen to Carlton",
+  },
+  {
+    href: "/music/grace",
+    icon: Mic2,
+    name: "Grace J Reid",
+    blurb: "EP (Live) — It Is Well With My Soul. Streaming now on Bandcamp.",
+    cta: "Listen to Grace",
+  },
+];
 
-  useEffect(() => {
-    setToken(getStoredAccessToken());
-    setMounted(true);
-  }, []);
-
-  // Once unlocked, mint short-lived signed URLs for each track.
-  useEffect(() => {
-    if (!token) return;
-    let cancelled = false;
-    (async () => {
-      const entries = await Promise.all(
-        TRACKS.map(async (t) => {
-          try {
-            const res = await fetch(
-              `/api/stems?token=${encodeURIComponent(token)}&file=${encodeURIComponent(t.file)}`,
-            );
-            if (!res.ok) return [t.file, ""] as const;
-            const data = await res.json();
-            return [t.file, data.url as string] as const;
-          } catch {
-            return [t.file, ""] as const;
-          }
-        }),
-      );
-      if (!cancelled) {
-        const ok = entries.filter(([, url]) => url);
-        setSignedUrls(Object.fromEntries(ok));
-        setStreamingDown(ok.length === 0);
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, [token]);
-
-  const unlocked = Boolean(token);
-
+/** Artist gateway — visitors choose whose music to enter. */
+export default function MusicGatewayPage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-14">
-      <header className="mb-10">
-        <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-brand-blue">
-          Original tracks
-        </p>
-        <h1 className="text-4xl font-bold text-brand-ink">Original Music</h1>
-        <p className="mt-3 max-w-xl text-brand-slate">
-          Eight original songs, streaming straight from the studio vault. Drop your email
-          once to unlock them all — then leave timestamped reactions as you listen.
-        </p>
-      </header>
+    <div className="mx-auto max-w-4xl px-4 py-20">
+      <motion.div variants={staggerContainer} initial="initial" animate="enter">
+        <motion.header variants={fadeUp} className="mb-12 text-center">
+          <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-brand-blue">
+            Original music
+          </p>
+          <h1 className="text-4xl font-bold text-brand-ink sm:text-5xl">Choose Your Artist</h1>
+          <p className="mx-auto mt-3 max-w-md text-brand-slate">
+            Two voices, one studio. Pick who you want to listen to first.
+          </p>
+        </motion.header>
 
-      {mounted && !unlocked && (
-        <button
-          onClick={() => setGateOpen(true)}
-          className="mb-8 inline-flex items-center gap-2 rounded-full bg-brand-lime px-6 py-3 font-semibold text-brand-deep shadow-lg shadow-brand-lime/25 transition hover:brightness-110"
-        >
-          <Lock size={16} /> Unlock all 8 tracks
-        </button>
-      )}
-      {mounted && unlocked && (
-        <p className="mb-8 inline-flex items-center gap-2 rounded-full bg-brand-lime/15 px-5 py-2.5 text-sm font-semibold text-brand-deep">
-          <Unlock size={15} className="text-brand-lime" /> Access unlocked — welcome back.
-        </p>
-      )}
-
-      {mounted && unlocked && streamingDown && (
-        <div className="mb-8 rounded-xl border border-amber-300 bg-amber-50 px-5 py-4 text-sm text-amber-900">
-          <strong>Streaming is warming up.</strong> Your access is confirmed, but the audio
-          server isn&apos;t reachable right now — playback will work once the cloud storage
-          connection is live. Check back soon.
+        <div className="grid gap-6 sm:grid-cols-2">
+          {ARTISTS.map((artist) => (
+            <motion.div key={artist.href} variants={fadeUp}>
+              <Link
+                href={artist.href}
+                className="group flex h-full flex-col items-center rounded-2xl border border-brand-slate/15 bg-white p-10 text-center shadow-sm transition hover:-translate-y-1 hover:border-brand-lime hover:shadow-xl"
+              >
+                <span className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-brand-deep text-brand-lime">
+                  <artist.icon size={28} />
+                </span>
+                <h2 className="text-2xl font-bold text-brand-ink">{artist.name}</h2>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-brand-slate">
+                  {artist.blurb}
+                </p>
+                <span className="mt-6 inline-flex items-center gap-1.5 font-semibold text-brand-blue transition group-hover:gap-3 group-hover:text-brand-lime">
+                  {artist.cta} <ArrowRight size={16} />
+                </span>
+              </Link>
+            </motion.div>
+          ))}
         </div>
-      )}
-
-      <div className="space-y-6">
-        {TRACKS.map((track) => {
-          const gated = !unlocked;
-          return (
-            <div key={track.file} className="relative">
-              <div className={gated ? "pointer-events-none select-none blur-sm" : ""}>
-                <AudioPlayerGradient
-                  mediaId={mediaIdFor(track.file)}
-                  title={track.title}
-                  src={signedUrls[track.file]}
-                  durationFallback={180}
-                />
-              </div>
-              {gated && (
-                <button
-                  onClick={() => setGateOpen(true)}
-                  className="absolute inset-0 flex items-center justify-center rounded-2xl bg-brand-ink/40"
-                >
-                  <span className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-brand-ink shadow-lg">
-                    <Lock size={14} /> Unlock with email
-                  </span>
-                </button>
-              )}
-            </div>
-          );
-        })}
-      </div>
-
-      <EmailGateModal
-        open={gateOpen}
-        onClose={() => setGateOpen(false)}
-        onUnlocked={(t) => {
-          setToken(t);
-          setGateOpen(false);
-        }}
-        sourceCategory="music"
-        headline="Unlock all 8 original tracks"
-      />
+      </motion.div>
     </div>
   );
 }

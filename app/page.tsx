@@ -10,8 +10,8 @@ const PILLARS = [
     href: "/music",
     icon: Music,
     title: "Original Music",
-    body: "Eight original songs streaming from the vault — drop time-synced reactions right on the waveform.",
-    cta: "Listen now",
+    body: "Original songs from Carlton B Reid III and Grace J Reid — choose your artist and press play.",
+    cta: "Choose your artist",
   },
   {
     href: "/documentary",
