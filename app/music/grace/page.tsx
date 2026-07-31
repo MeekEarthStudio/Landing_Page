@@ -1,5 +1,3 @@
-import TipButton from "@/components/TipButton";
-
 export const metadata = {
   title: "Grace J Reid — It Is Well With My Soul | Meek Earth STUDIO",
   description: "EP (Live) — It Is Well With My Soul by Grace J. Reid, streaming on Bandcamp.",
@@ -37,8 +35,6 @@ export default function GraceMusicPage() {
           EP (Live) — It Is Well With My Soul by Grace J. Reid on Bandcamp
         </a>
       </p>
-
-      <TipButton message="Enjoying the music? Leave a tip" />
     </div>
   );
 }
