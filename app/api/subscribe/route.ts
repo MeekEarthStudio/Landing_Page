@@ -3,7 +3,7 @@ import { randomUUID } from "crypto";
 import { getClientIp, rateLimit, tooManyRequests } from "@/lib/rateLimit";
 import { addKitSubscriber } from "@/lib/kit";
 
-const VALID_CATEGORIES = ["music", "documentary", "nonprofit", "blog"] as const;
+const VALID_CATEGORIES = ["music", "documentary", "nonprofit", "blog", "waitlist"] as const;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /** Handles email sign-ups → Kit (ConvertKit). */

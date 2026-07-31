@@ -19,6 +19,7 @@ const NAV = [
   { href: "/music", label: "Music" },
   { href: "/documentary", label: "Documentary" },
   { href: "/blog", label: "Blog" },
+  { href: "/about", label: "About" },
 ];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

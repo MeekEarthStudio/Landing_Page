@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Lock, Mail, X, Loader2, CheckCircle2 } from "lucide-react";
 
-export type SourceCategory = "music" | "documentary" | "nonprofit" | "blog";
+export type SourceCategory = "music" | "documentary" | "nonprofit" | "blog" | "waitlist";
 
 const TOKEN_KEY = "meek-earth-access-token";
 
@@ -19,10 +19,18 @@ interface Props {
   onUnlocked: (token: string) => void;
   sourceCategory: SourceCategory;
   headline?: string;
+  description?: string;
 }
 
 /** Lead-capture barrier shown before media access. */
-export default function EmailGateModal({ open, onClose, onUnlocked, sourceCategory, headline }: Props) {
+export default function EmailGateModal({
+  open,
+  onClose,
+  onUnlocked,
+  sourceCategory,
+  headline,
+  description,
+}: Props) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -80,8 +88,8 @@ export default function EmailGateModal({ open, onClose, onUnlocked, sourceCatego
               {headline ?? "Unlock exclusive access"}
             </h2>
             <p className="mt-2 text-sm text-brand-slate">
-              Drop your email to unlock the original tracks and get first word when the
-              documentary and new posts drop. No spam — ever.
+              {description ??
+                "Drop your email to unlock the original tracks and get first word when the documentary and new posts drop. No spam — ever."}
             </p>
 
             {status === "done" ? (

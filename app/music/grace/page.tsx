@@ -48,6 +48,10 @@ export default function GraceMusicPage() {
           <Disc3 size={18} /> Buy the EP on CD
         </a>
       </div>
+
+      <p className="mt-4 text-center text-sm font-semibold text-brand-deep">
+        100% of the EP profit goes to Grace.
+      </p>
     </div>
   );
 }
