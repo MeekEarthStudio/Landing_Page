@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
-import Link from "next/link";
 import MeekEarthLogo from "@/components/MeekEarthLogo";
 import BottomBar from "@/components/BottomBar";
+import SiteNav from "@/components/SiteNav";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -15,13 +15,6 @@ export const metadata: Metadata = {
     "Eight original tracks streaming now, an interactive documentary in production, and stories from the studio. Stay tuned.",
 };
 
-const NAV = [
-  { href: "/music", label: "Music" },
-  { href: "/documentary", label: "Documentary" },
-  { href: "/blog", label: "Blog" },
-  { href: "/about", label: "About" },
-];
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
@@ -29,21 +22,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body className="flex min-h-screen flex-col font-sans">
         <header className="sticky top-0 z-40 border-b border-slate-100 bg-white/85 backdrop-blur">
-          <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
+          <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
             <MeekEarthLogo />
-            <nav className="hidden items-center gap-6 text-sm font-medium text-brand-slate md:flex">
-              {NAV.map((item) => (
-                <Link key={item.href} href={item.href} className="transition hover:text-brand-blue">
-                  {item.label}
-                </Link>
-              ))}
-              <Link
-                href="/music"
-                className="rounded-full bg-brand-lime px-4 py-2 font-semibold text-brand-deep transition hover:brightness-110"
-              >
-                Listen now
-              </Link>
-            </nav>
+            <SiteNav />
           </div>
         </header>
 

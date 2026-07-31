@@ -16,9 +16,9 @@ const PILLARS = [
   {
     href: "/documentary",
     icon: Film,
-    title: "Interactive Documentary",
-    body: "The film is in production. When it premieres, react moment-by-moment alongside the community.",
-    cta: "Stay tuned",
+    title: "The Documentary",
+    body: "Episode 1 is streaming now — press play, and stay tuned for what comes next.",
+    cta: "Watch now",
   },
   {
     href: "/blog",
@@ -148,7 +148,7 @@ export default function LandingPage() {
         <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 px-4 text-center sm:grid-cols-3">
           {[
             ["8", "Original tracks streaming now"],
-            ["Stay Tuned", "Documentary in production"],
+            ["Ep. 1", "Documentary streaming now"],
             ["Stay Tuned", "Blog launching soon"],
           ].map(([stat, label]) => (
             <div key={label}>
