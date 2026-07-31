@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Music, Film, BookOpen, ArrowRight, Sparkles } from "lucide-react";
+import { Music, Film, BookOpen, ArrowRight, Sparkles, Ticket } from "lucide-react";
 import { staggerContainer, fadeUp } from "@/lib/animations";
 
 const PILLARS = [
@@ -107,6 +107,39 @@ export default function LandingPage() {
               </Link>
             </motion.div>
           ))}
+        </motion.div>
+      </section>
+
+      {/* Concert waitlist teaser */}
+      <section className="mx-auto max-w-6xl px-4 pb-24">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+          className="relative overflow-hidden rounded-3xl bg-brand-deep p-10 text-center text-white sm:p-14"
+        >
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -top-24 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-gradient-to-r from-brand-lime/20 via-brand-blue/15 to-brand-lime/20 blur-3xl"
+          />
+          <span className="relative mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-brand-lime">
+            <Ticket size={22} />
+          </span>
+          <h2 className="relative text-3xl font-bold sm:text-4xl">
+            Concerts, reimagined —{" "}
+            <span className="font-serif italic text-brand-lime">2027</span>
+          </h2>
+          <p className="relative mx-auto mt-4 max-w-xl text-white/70">
+            Transparent, intimate concerts streamed from the comfort of your own home. No
+            hidden fees, no middlemen — you're back in control.
+          </p>
+          <Link
+            href="/about"
+            className="relative mt-8 inline-flex items-center gap-2 rounded-full bg-brand-lime px-8 py-4 font-semibold text-brand-deep shadow-lg shadow-brand-lime/25 transition hover:brightness-110"
+          >
+            Join the waitlist <ArrowRight size={17} />
+          </Link>
         </motion.div>
       </section>
 
