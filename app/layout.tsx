@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 import Link from "next/link";
 import MeekEarthLogo from "@/components/MeekEarthLogo";
+import BottomBar from "@/components/BottomBar";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -60,6 +61,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </p>
           </div>
         </footer>
+
+        <BottomBar />
 
         {gaId && (
           <>
