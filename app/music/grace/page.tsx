@@ -1,3 +1,5 @@
+import { Disc3 } from "lucide-react";
+
 export const metadata = {
   title: "Grace J Reid — It Is Well With My Soul | Meek Earth STUDIO",
   description: "EP (Live) — It Is Well With My Soul by Grace J. Reid, streaming on Bandcamp.",
@@ -35,6 +37,17 @@ export default function GraceMusicPage() {
           EP (Live) — It Is Well With My Soul by Grace J. Reid on Bandcamp
         </a>
       </p>
+
+      <div className="mt-8 flex justify-center">
+        <a
+          href="https://kunaki.com/sales.asp?PID=PX00Z4BATO&pp=1"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-full bg-brand-lime px-7 py-3.5 font-semibold text-brand-deep shadow-lg shadow-brand-lime/25 transition hover:brightness-110"
+        >
+          <Disc3 size={18} /> Buy the EP on CD
+        </a>
+      </div>
     </div>
   );
 }
