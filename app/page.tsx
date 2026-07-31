@@ -9,8 +9,8 @@ const PILLARS = [
   {
     href: "/music",
     icon: Music,
-    title: "Unreleased Music",
-    body: "Eight unreleased songs streaming from the vault — drop time-synced reactions right on the waveform.",
+    title: "Original Music",
+    body: "Eight original songs streaming from the vault — drop time-synced reactions right on the waveform.",
     cta: "Listen now",
   },
   {
@@ -61,7 +61,7 @@ export default function LandingPage() {
             </span>
           </motion.h1>
           <motion.p variants={fadeUp} className="mx-auto mt-6 max-w-2xl text-lg text-brand-slate">
-            A next-generation home for unreleased music, interactive documentary film, and
+            A next-generation home for original music, interactive documentary film, and
             stories from the studio.
           </motion.p>
           <motion.div variants={fadeUp} className="mt-10 flex flex-wrap justify-center gap-4">
@@ -69,7 +69,7 @@ export default function LandingPage() {
               href="/music"
               className="inline-flex items-center gap-2 rounded-full bg-brand-lime px-7 py-3.5 font-semibold text-brand-deep shadow-lg shadow-brand-lime/25 transition hover:brightness-110"
             >
-              Listen to unreleased tracks <ArrowRight size={17} />
+              Listen to original tracks <ArrowRight size={17} />
             </Link>
             <Link
               href="/blog"
@@ -114,7 +114,7 @@ export default function LandingPage() {
       <section className="bg-brand-deep py-16 text-white">
         <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 px-4 text-center sm:grid-cols-3">
           {[
-            ["8", "Unreleased tracks streaming now"],
+            ["8", "Original tracks streaming now"],
             ["Stay Tuned", "Documentary in production"],
             ["Stay Tuned", "Blog launching soon"],
           ].map(([stat, label]) => (

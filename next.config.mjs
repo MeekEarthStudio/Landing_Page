@@ -10,7 +10,7 @@ const nextConfig = {
   async redirects() {
     return [
       { source: "/library", destination: "/blog", permanent: true },
-      { source: "/dashboard/nonprofit", destination: "/dashboard", permanent: true },
+      { source: "/dashboard/:path*", destination: "/", permanent: false },
     ];
   },
 };

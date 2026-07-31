@@ -54,11 +54,11 @@ export default function MusicPage() {
     <div className="mx-auto max-w-4xl px-4 py-14">
       <header className="mb-10">
         <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-brand-blue">
-          Unreleased tracks
+          Original tracks
         </p>
-        <h1 className="text-4xl font-bold text-brand-ink">Unreleased Music</h1>
+        <h1 className="text-4xl font-bold text-brand-ink">Original Music</h1>
         <p className="mt-3 max-w-xl text-brand-slate">
-          Eight unreleased songs, streaming straight from the studio vault. Drop your email
+          Eight original songs, streaming straight from the studio vault. Drop your email
           once to unlock them all — then leave timestamped reactions as you listen.
         </p>
       </header>
@@ -86,8 +86,8 @@ export default function MusicPage() {
       )}
 
       <div className="space-y-6">
-        {TRACKS.map((track, i) => {
-          const gated = !unlocked && i > 0;
+        {TRACKS.map((track) => {
+          const gated = !unlocked;
           return (
             <div key={track.file} className="relative">
               <div className={gated ? "pointer-events-none select-none blur-sm" : ""}>
@@ -121,7 +121,7 @@ export default function MusicPage() {
           setGateOpen(false);
         }}
         sourceCategory="music"
-        headline="Unlock all 8 unreleased tracks"
+        headline="Unlock all 8 original tracks"
       />
     </div>
   );

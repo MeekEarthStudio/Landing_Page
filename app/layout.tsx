@@ -11,14 +11,13 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif"
 export const metadata: Metadata = {
   title: "Meek Earth STUDIO — Music, Film & Impact",
   description:
-    "Eight unreleased tracks streaming now, an interactive documentary in production, and stories from the studio. Stay tuned.",
+    "Eight original tracks streaming now, an interactive documentary in production, and stories from the studio. Stay tuned.",
 };
 
 const NAV = [
   { href: "/music", label: "Music" },
   { href: "/documentary", label: "Documentary" },
   { href: "/blog", label: "Blog" },
-  { href: "/dashboard", label: "Stats" },
 ];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

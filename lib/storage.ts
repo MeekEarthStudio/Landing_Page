@@ -18,7 +18,7 @@ export const ASSETS_BUCKET =
 
 /**
  * Generate a short-lived signed URL for a private object
- * (unreleased stems, 4K documentary masters, nonprofit toolkits).
+ * (original tracks, documentary masters).
  */
 export async function getSignedDownloadUrl(
   objectPath: string,

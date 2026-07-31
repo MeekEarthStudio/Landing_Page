@@ -80,7 +80,7 @@ export default function EmailGateModal({ open, onClose, onUnlocked, sourceCatego
               {headline ?? "Unlock exclusive access"}
             </h2>
             <p className="mt-2 text-sm text-brand-slate">
-              Drop your email to unlock the unreleased tracks and get first word when the
+              Drop your email to unlock the original tracks and get first word when the
               documentary and new posts drop. No spam — ever.
             </p>
 
