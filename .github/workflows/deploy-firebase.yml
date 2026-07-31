@@ -1,7 +1,8 @@
 # CI for Meek Earth STUDIO.
 # Firebase App Hosting auto-deploys from the connected GitHub repo on push
-# to the live branch — this workflow gates that deploy with a build check
-# and deploys Firestore/Storage rules.
+# to the live branch — this workflow gates that deploy with a build check.
+# (No rules deploy: the site uses Kit for emails and server-side signed
+# URLs for storage; Firestore is unused.)
 name: Build & Deploy
 
 on:
@@ -28,18 +29,3 @@ jobs:
         run: npm run build
         env:
           NEXT_PUBLIC_APP_ID: meek-earth-studio
-
-  deploy-rules:
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Deploy Firestore & Storage rules
-        uses: w9jds/firebase-action@v13.4.0
-        with:
-          args: deploy --only firestore:rules,storage
-        env:
-          GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}

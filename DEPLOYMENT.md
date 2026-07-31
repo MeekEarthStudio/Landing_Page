@@ -100,14 +100,9 @@ Firebase Console → **App Hosting** → *Get started*:
 Every push to `main` now builds (Cloud Build) and deploys automatically.
 
 The GitHub Actions workflow in `.github/workflows/deploy-firebase.yml` runs a
-build gate on every push and PR — that job already works. Its second job
-(deploying Firestore/Storage rules) stays red until you add two repository
-secrets at
-[Settings → Secrets and variables → Actions](https://github.com/MeekEarthStudio/Landing_Page/settings/secrets/actions):
-
-- `FIREBASE_SERVICE_ACCOUNT` — a service-account JSON from the Firebase
-  project (Project settings → Service accounts → Generate new private key)
-- `FIREBASE_PROJECT_ID` — `meek-earth-email-capture-94556`
+build gate on every push and PR — no secrets required. (There is no rules
+deploy: Firestore is unused, and the storage bucket is private with access
+only through server-side signed URLs.)
 
 ## 7. Wire up the web app config
 
