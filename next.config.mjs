@@ -8,7 +8,10 @@ const nextConfig = {
   },
   serverExternalPackages: ["firebase-admin", "@google-cloud/bigquery", "@google-cloud/storage"],
   async redirects() {
-    return [{ source: "/library", destination: "/blog", permanent: true }];
+    return [
+      { source: "/library", destination: "/blog", permanent: true },
+      { source: "/dashboard/nonprofit", destination: "/dashboard", permanent: true },
+    ];
   },
 };
 

@@ -67,7 +67,18 @@ export default function AudioPlayerGradient({
       if (playing) el.pause();
       else void el.play();
     }
-    if (!playing) setHasPlayed(true);
+    if (!playing) {
+      if (!hasPlayed) {
+        // Count one play per session per track; never blocks playback.
+        fetch("/api/track", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ type: "play", mediaId }),
+          keepalive: true,
+        }).catch(() => {});
+      }
+      setHasPlayed(true);
+    }
     setPlaying(!playing);
   }
 
@@ -88,6 +99,12 @@ export default function AudioPlayerGradient({
       createdAt: serverTimestamp(),
     };
     setComment("");
+    fetch("/api/track", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type: "reaction", mediaId }),
+      keepalive: true,
+    }).catch(() => {});
     if (db) {
       await addDoc(collection(db, `${PUBLIC_DATA_PATH}/media_reactions`), reaction);
     } else {
