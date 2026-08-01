@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Ticket, Hammer, HeartHandshake, Mail, Sparkles } from "lucide-react";
+import { Ticket, Hammer, HeartHandshake, Mail, Sparkles, UserPlus } from "lucide-react";
 import EmailGateModal from "@/components/EmailGateModal";
 import TipButton from "@/components/TipButton";
 import WaterfallDivider from "@/components/WaterfallDivider";
@@ -106,9 +106,18 @@ export default function AboutPage() {
           Meek Earth STUDIO is returning the arts to underserved communities, fairly paying
           artists, and funding nonprofits.
         </p>
-        <CopyEmailButton className="mt-8 inline-flex items-center gap-2 rounded-full border-2 border-brand-blue px-7 py-3.5 font-semibold text-brand-blue transition hover:bg-brand-blue hover:text-white">
-          <Mail size={17} /> Business inquiries: {CONTACT_EMAIL}
-        </CopyEmailButton>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <a
+            href="/api/contact"
+            download="meek-earth-studio.vcf"
+            className="inline-flex items-center gap-2 rounded-full bg-brand-lime px-7 py-3.5 font-semibold text-brand-deep shadow-lg shadow-brand-lime/25 transition hover:brightness-110"
+          >
+            <UserPlus size={18} /> Contact Us — save to your phone
+          </a>
+          <CopyEmailButton className="inline-flex items-center gap-2 rounded-full border-2 border-brand-blue px-7 py-3.5 font-semibold text-brand-blue transition hover:bg-brand-blue hover:text-white">
+            <Mail size={17} /> Business inquiries: {CONTACT_EMAIL}
+          </CopyEmailButton>
+        </div>
       </motion.section>
 
       <EmailGateModal
