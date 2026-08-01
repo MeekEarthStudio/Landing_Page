@@ -6,8 +6,9 @@ import {
   Tag,
   Mail,
   ShieldCheck,
-  ArrowRight,
+  Copy,
 } from "lucide-react";
+import CopyEmailButton, { CONTACT_EMAIL } from "@/components/CopyEmailButton";
 
 export const metadata = {
   title: "Impact Documentation Services — Meek Earth STUDIO",
@@ -30,8 +31,6 @@ const SERVICES = [
     turnaround: "5–7 business days from receiving your event data",
     price: "$500–$1,500 per report",
     ctaLabel: "Request an After Action Report",
-    ctaHref:
-      "mailto:cbreid3@meekearthstudio.net?subject=After%20Action%20Report%20%E2%80%94%20%5BYour%20Organization%5D",
   },
   {
     icon: BarChart3,
@@ -46,8 +45,6 @@ const SERVICES = [
     turnaround: "Delivered within two weeks of each quarter's close",
     price: "$500–$750 per quarter",
     ctaLabel: "Set Up a Dashboard",
-    ctaHref:
-      "mailto:cbreid3@meekearthstudio.net?subject=Quarterly%20Impact%20Dashboard%20%E2%80%94%20%5BYour%20Organization%5D",
   },
 ];
 
@@ -126,12 +123,9 @@ export default function ServicesPage() {
               </p>
             </div>
 
-            <a
-              href={s.ctaHref}
-              className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-brand-lime px-6 py-3 font-semibold text-brand-deep transition hover:brightness-110"
-            >
-              {s.ctaLabel} <ArrowRight size={16} />
-            </a>
+            <CopyEmailButton className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-lime px-6 py-3 font-semibold text-brand-deep transition hover:brightness-110">
+              {s.ctaLabel} <Copy size={15} />
+            </CopyEmailButton>
           </div>
         ))}
       </div>
@@ -170,17 +164,14 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <p className="mt-12 text-center text-sm text-brand-slate">
-        <a
-          href="mailto:cbreid3@meekearthstudio.net"
-          className="inline-flex items-center gap-2 font-semibold text-brand-blue transition hover:text-brand-lime"
-        >
-          <Mail size={15} /> cbreid3@meekearthstudio.net
-        </a>
-        <span className="mt-2 block font-serif text-xs tracking-[0.25em] uppercase">
+      <div className="mt-12 text-center text-sm text-brand-slate">
+        <CopyEmailButton className="inline-flex items-center gap-2 font-semibold text-brand-blue transition hover:text-brand-lime">
+          <Mail size={15} /> {CONTACT_EMAIL} <Copy size={13} />
+        </CopyEmailButton>
+        <span className="mt-4 block font-serif text-xs tracking-[0.25em] uppercase">
           Meek Earth Studio PBC · Woodbridge, VA · Music for the meek
         </span>
-      </p>
+      </div>
     </div>
   );
 }
