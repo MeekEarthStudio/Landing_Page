@@ -159,6 +159,33 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* Email Capture / Contact Form */}
+      <section className="mt-16">
+        <div className="mb-6 text-center">
+          <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-brand-blue">
+            Get In Touch
+          </p>
+          <h2 className="text-3xl font-bold text-brand-ink">Request Your Report</h2>
+        </div>
+        <div className="py-4">
+          <iframe
+            src="https://meek-earth-email-capture-94556.web.app"
+            width="100%"
+            height="680"
+            style={{
+              maxWidth: "480px",
+              border: "none",
+              borderRadius: "24px",
+              overflow: "hidden",
+              boxShadow: "0 20px 40px rgba(0,0,0,0.5)",
+              display: "block",
+              margin: "0 auto",
+            }}
+            title="Deanwood Concert Impact Report"
+          />
+        </div>
+      </section>
+
       {/* Data handling */}
       <section className="mt-12 rounded-2xl bg-brand-deep p-8 text-white sm:p-10">
         <div className="flex items-start gap-4">
