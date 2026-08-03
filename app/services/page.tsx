@@ -115,6 +115,34 @@ export default function ServicesPage() {
         ))}
       </div>
 
+      {/* Option 1: Full-Width Embed */}
+      <section className="mt-16">
+        <div className="mb-6 text-center">
+          <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-brand-blue">
+            Embed Option 1
+          </p>
+          <h2 className="text-3xl font-bold text-brand-ink">Full-Width Interactive View</h2>
+          <p className="mt-2 text-brand-slate">
+            Full-width layout suitable for landing pages and dedicated report sections.
+          </p>
+        </div>
+        <div className="overflow-hidden rounded-3xl border border-brand-slate/15 shadow-md">
+          <iframe
+            src="https://meek-earth-email-capture-94556.web.app"
+            width="100%"
+            height="800"
+            style={{
+              width: "100%",
+              minHeight: "800px",
+              border: "none",
+              overflow: "hidden",
+              background: "#000000",
+            }}
+            title="Deanwood Concert Impact Report"
+          />
+        </div>
+      </section>
+
       {/* How it works */}
       <section className="mt-16">
         <h2 className="text-center text-3xl font-bold text-brand-ink">How It Works</h2>
@@ -131,13 +159,16 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Email Capture / Contact Form */}
+      {/* Option 2: Compact Card Embed */}
       <section className="mt-16">
         <div className="mb-6 text-center">
           <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-brand-blue">
-            Get In Touch
+            Embed Option 2
           </p>
-          <h2 className="text-3xl font-bold text-brand-ink">Request Your Report</h2>
+          <h2 className="text-3xl font-bold text-brand-ink">Compact Card View</h2>
+          <p className="mt-2 text-brand-slate">
+            Centered card layout ideal for sidebar embeds or quick intake forms.
+          </p>
         </div>
         <div className="py-4">
           <iframe
@@ -147,11 +178,10 @@ export default function ServicesPage() {
             style={{
               maxWidth: "480px",
               border: "none",
-              borderRadius: "24px",
               overflow: "hidden",
-              boxShadow: "0 20px 40px rgba(0,0,0,0.5)",
               display: "block",
               margin: "0 auto",
+              background: "#000000",
             }}
             title="Deanwood Concert Impact Report"
           />
