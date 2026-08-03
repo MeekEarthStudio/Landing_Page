@@ -115,34 +115,6 @@ export default function ServicesPage() {
         ))}
       </div>
 
-      {/* Live Example */}
-      <section className="mt-16">
-        <div className="mb-6 text-center">
-          <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-brand-blue">
-            Sample Output
-          </p>
-          <h2 className="text-3xl font-bold text-brand-ink">Live Example Report</h2>
-          <p className="mt-2 text-brand-slate">
-            Explore an interactive Deanwood Concert Impact Report below.
-          </p>
-        </div>
-        <div className="overflow-hidden rounded-3xl border border-brand-slate/15 bg-white shadow-md">
-          <iframe
-            src="https://linen-compiler-496015-u6.web.app"
-            width="100%"
-            height="800"
-            style={{
-              width: "100%",
-              minHeight: "800px",
-              border: "none",
-              borderRadius: "24px",
-              overflow: "hidden",
-            }}
-            title="Deanwood Concert Impact Report"
-          />
-        </div>
-      </section>
-
       {/* How it works */}
       <section className="mt-16">
         <h2 className="text-center text-3xl font-bold text-brand-ink">How It Works</h2>
