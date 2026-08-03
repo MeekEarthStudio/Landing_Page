@@ -1,6 +1,5 @@
 import {
   FileText,
-  BarChart3,
   Check,
   Clock,
   Tag,
@@ -13,7 +12,7 @@ import CopyEmailButton, { CONTACT_EMAIL } from "@/components/CopyEmailButton";
 export const metadata = {
   title: "Impact Documentation Services — Meek Earth STUDIO",
   description:
-    "Donor-ready After Action Reports and Quarterly Impact Dashboards for nonprofits — fixed-fee, branded, and built to earn trust.",
+    "Donor-ready After Action Reports for nonprofits — fixed-fee, branded, and built to earn trust.",
 };
 
 const SERVICES = [
@@ -31,20 +30,6 @@ const SERVICES = [
     turnaround: "5–7 business days from receiving your event data",
     price: "$500–$1,500 per report",
     ctaLabel: "Request an After Action Report",
-  },
-  {
-    icon: BarChart3,
-    name: "Quarterly Impact Dashboards",
-    tagline:
-      "A one-page metrics snapshot every quarter — the numbers your board and major donors actually ask about, kept current without staff time. Live dashboard access available as an add-on.",
-    includes: [
-      "Quarterly one-page PDF dashboard",
-      "Metrics setup in your first quarter",
-      "Year-over-year tracking as history builds",
-    ],
-    turnaround: "Delivered within two weeks of each quarter's close",
-    price: "$500–$750 per quarter",
-    ctaLabel: "Set Up a Dashboard",
   },
 ];
 
@@ -91,7 +76,7 @@ export default function ServicesPage() {
       </header>
 
       {/* Services */}
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="mx-auto max-w-2xl">
         {SERVICES.map((s) => (
           <div
             key={s.name}
@@ -143,7 +128,7 @@ export default function ServicesPage() {
         </div>
         <div className="overflow-hidden rounded-3xl border border-brand-slate/15 bg-white shadow-md">
           <iframe
-            src="https://deanwood-concert.web.app"
+            src="https://linen-compiler-496015-u6.web.app"
             width="100%"
             height="800"
             style={{
