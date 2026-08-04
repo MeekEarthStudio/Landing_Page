@@ -76,19 +76,26 @@ const FEATURES = [
 const PRICING_TIERS = [
   {
     name: "Compact",
-    price: "From $500",
+    price: "From $950",
     description: "A single event, straightforward finances",
   },
   {
     name: "Standard",
-    price: "From $750",
+    price: "From $1,650",
     description: "A single event with sponsors and multiple revenue streams",
     highlight: true,
   },
   {
     name: "Flagship",
-    price: "From $1,100",
-    description: "A gala or multi-day event; photo essay, tiered sponsor sections, board version",
+    price: "From $2,950",
+    description:
+      "A gala or multi-day event; photo essay, tiered sponsor sections, board version",
+  },
+  {
+    name: "Season Partner",
+    price: "$4,200 / year",
+    description:
+      "Three Standard reports across your event calendar — one relationship, one intake, every event accounted for. (Save $750 vs. booking separately.)",
   },
 ];
 
@@ -214,14 +221,17 @@ export default function ServicesPage() {
           <p className="mt-3 text-lg font-medium text-brand-ink">
             Every engagement is <strong className="font-bold text-brand-blue">fixed-fee</strong> — you know the total before we begin, in writing.
           </p>
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-brand-slate">
+            Agencies charge $5,000–$12,000 to design a report — and they don&apos;t touch your numbers. We design the report <em>and</em> verify every dollar in it, for a fraction of that.
+          </p>
         </div>
 
         {/* Tiers Grid */}
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {PRICING_TIERS.map((tier) => (
             <div
               key={tier.name}
-              className={`flex flex-col rounded-2xl p-8 transition ${
+              className={`flex flex-col rounded-2xl p-6 transition ${
                 tier.highlight
                   ? "border-2 border-brand-blue bg-white shadow-lg ring-1 ring-brand-blue/20"
                   : "border border-brand-slate/15 bg-white shadow-sm hover:border-brand-lime hover:shadow-md"
@@ -233,12 +243,12 @@ export default function ServicesPage() {
                 </span>
               )}
               <h3 className="text-2xl font-bold text-brand-ink">{tier.name}</h3>
-              <p className="mt-2 text-3xl font-extrabold text-brand-ink">{tier.price}</p>
+              <p className="mt-2 text-2xl font-extrabold text-brand-ink">{tier.price}</p>
               <p className="mt-4 flex-1 text-sm leading-relaxed text-brand-slate">
                 {tier.description}
               </p>
-              <CopyEmailButton className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-lime px-6 py-3 font-semibold text-brand-deep transition hover:brightness-110">
-                Request a Quote <Copy size={15} />
+              <CopyEmailButton className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-lime px-5 py-3 text-sm font-semibold text-brand-deep transition hover:brightness-110">
+                Request a Quote <Copy size={14} />
               </CopyEmailButton>
             </div>
           ))}
@@ -255,29 +265,40 @@ export default function ServicesPage() {
             reconstruction, we do that too:{" "}
             <strong className="font-semibold text-brand-ink">send us what you have, we&apos;ll sort it.</strong>{" "}
             Heavy-reconstruction engagements run up to{" "}
-            <strong className="font-semibold text-brand-ink">$1,750</strong>, and reconstruction
+            <strong className="font-semibold text-brand-ink">$4,500</strong>, and reconstruction
             work includes a written record of every assumption we made — which itself becomes
             something you can show a funder.
           </p>
-          <p>
+          <p className="mb-6">
             Whatever the number is, it&apos;s quoted before we start, locked in the engagement
             letter, and never revised mid-project. In fairness both directions: if the materials
             you send turn out drastically different from what was described at intake, we pause and
             re-quote before continuing — and if they turn out <em>cleaner</em> than described,
             you get the difference back.
           </p>
-          <div className="mt-6 flex flex-wrap items-center gap-6 border-t border-slate-200/80 pt-6 text-xs text-brand-ink">
-            <p className="flex items-center gap-2">
-              <Clock size={16} className="text-brand-blue" />
-              <span>
-                Standard turnaround: <strong className="font-semibold">5–7 business days</strong>
-              </span>
-            </p>
-            <p className="flex items-center gap-2">
-              <Zap size={16} className="text-brand-lime" />
-              <span>
-                Reconstruction turnaround: <strong className="font-semibold">7–10 business days</strong> (Rush available)
-              </span>
+          <div className="space-y-3 border-t border-slate-200/80 pt-6 text-xs text-brand-ink">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+              <p className="flex items-center gap-2">
+                <Clock size={16} className="text-brand-blue" />
+                <span>
+                  Standard turnaround: <strong className="font-semibold">5–7 business days</strong>
+                </span>
+              </p>
+              <p className="flex items-center gap-2">
+                <Zap size={16} className="text-brand-lime" />
+                <span>
+                  Rush (3 business days): <strong className="font-semibold">+$400</strong>
+                </span>
+              </p>
+              <p className="flex items-center gap-2">
+                <Clock size={16} className="text-brand-blue" />
+                <span>
+                  Reconstruction turnaround: <strong className="font-semibold">7–10 business days</strong> (Rush available)
+                </span>
+              </p>
+            </div>
+            <p className="pt-2 text-xs text-brand-slate">
+              Hosting is included for 12 months. Renewal after year one: <strong className="font-semibold text-brand-ink">$120/year</strong> — or we hand you the files to keep forever. Your report, either way.
             </p>
           </div>
         </div>
