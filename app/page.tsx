@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Music, Film, BookOpen, ArrowRight, Sparkles, Ticket } from "lucide-react";
+import { Music, Film, BookOpen, ArrowRight, Sparkles, Ticket, HeartHandshake } from "lucide-react";
 import { staggerContainer, fadeUp } from "@/lib/animations";
 
 const PILLARS = [
@@ -110,6 +110,59 @@ export default function LandingPage() {
         </motion.div>
       </section>
 
+      {/* Good Samaritan */}
+      <section className="mx-auto max-w-6xl px-4 pb-24">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+          className="relative overflow-hidden rounded-3xl border border-brand-slate/15 bg-gradient-to-br from-white via-slate-50 to-brand-lime/10 p-10 sm:p-14"
+        >
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-brand-blue/10 blur-3xl"
+          />
+          <div className="relative grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
+            <div>
+              <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-deep text-brand-lime">
+                <HeartHandshake size={22} />
+              </span>
+              <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-brand-blue">
+                Live product
+              </p>
+              <h2 className="text-3xl font-bold text-brand-ink sm:text-4xl">
+                Good{" "}
+                <span className="font-serif italic bg-gradient-to-r from-brand-lime to-brand-blue bg-clip-text text-transparent">
+                  Samaritan
+                </span>
+              </h2>
+              <p className="mt-4 max-w-xl text-brand-slate">
+                Christian stewardship logging for giving, service, and gratitude — with AI
+                pastoral chat, video reflections, document exports, and safety guardrails from
+                PII redaction to server-side quotas.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  href="/good-samaritan"
+                  className="inline-flex items-center gap-2 rounded-full bg-brand-lime px-7 py-3.5 font-semibold text-brand-deep shadow-lg shadow-brand-lime/25 transition hover:brightness-110"
+                >
+                  See capabilities & safety <ArrowRight size={17} />
+                </Link>
+                <a
+                  href="https://good-samaritan-504806.web.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-brand-blue px-7 py-3.5 font-semibold text-brand-blue transition hover:bg-brand-blue hover:text-white"
+                >
+                  Open the app
+                </a>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
       {/* Concert waitlist teaser */}
       <section className="mx-auto max-w-6xl px-4 pb-24">
         <motion.div
@@ -149,7 +202,7 @@ export default function LandingPage() {
           {[
             ["8", "Original tracks streaming now"],
             ["Ep. 1", "Documentary streaming now"],
-            ["Stay Tuned", "Blog launching soon"],
+            ["Live", "Good Samaritan stewardship app"],
           ].map(([stat, label]) => (
             <div key={label}>
               <p className="font-serif text-3xl font-bold text-brand-lime">{stat}</p>

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Disc3, Heart, Music, X } from "lucide-react";
+import { Disc3, Heart, HeartHandshake, Music, X } from "lucide-react";
 
 const DISMISS_KEY = "meek-earth-bottombar-dismissed";
 const DISMISS_HOURS = 24;
@@ -47,6 +47,15 @@ const CTAS: Cta[] = [
     label: "Listen now",
     href: "/music/carlton",
     hideOn: ["/music/carlton"],
+  },
+  {
+    id: "good-samaritan",
+    icon: HeartHandshake,
+    text: "Good Samaritan — stewardship logging with AI pastoral chat",
+    label: "Open app",
+    href: "https://good-samaritan-504806.web.app/",
+    external: true,
+    hideOn: ["/good-samaritan"],
   },
 ];
 
