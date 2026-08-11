@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { Lock, Unlock } from "lucide-react";
-import AudioPlayerGradient from "@/components/AudioPlayerGradient";
+import AlbumPlayer from "@/components/AlbumPlayer";
 import EmailGateModal, { getStoredAccessToken } from "@/components/EmailGateModal";
-import { TRACKS, mediaIdFor } from "@/lib/tracks";
+import { TRACKS } from "@/lib/tracks";
 
 export default function CarltonMusicPage() {
   const [token, setToken] = useState<string | null>(null);
@@ -51,28 +51,30 @@ export default function CarltonMusicPage() {
   const unlocked = Boolean(token);
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-14">
-      <header className="mb-10">
+    <div className="mx-auto max-w-xl px-4 py-14">
+      <header className="mb-10 text-center">
         <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-brand-blue">
           Carlton B Reid III
         </p>
         <h1 className="text-4xl font-bold text-brand-ink">Original Music</h1>
-        <p className="mt-3 max-w-xl text-brand-slate">
-          Eight original songs, streaming straight from the studio vault. Drop your email
-          once to unlock them all — then leave timestamped reactions as you listen.
+        <p className="mx-auto mt-3 max-w-md text-brand-slate">
+          Eight original songs in one player — pick a track, skip ahead, or let it run. Drop
+          your email once to unlock the vault.
         </p>
       </header>
 
       {mounted && !unlocked && (
-        <button
-          onClick={() => setGateOpen(true)}
-          className="mb-8 inline-flex items-center gap-2 rounded-full bg-brand-lime px-6 py-3 font-semibold text-brand-deep shadow-lg shadow-brand-lime/25 transition hover:brightness-110"
-        >
-          <Lock size={16} /> Unlock all 8 tracks
-        </button>
+        <div className="mb-8 flex justify-center">
+          <button
+            onClick={() => setGateOpen(true)}
+            className="inline-flex items-center gap-2 rounded-full bg-brand-lime px-6 py-3 font-semibold text-brand-deep shadow-lg shadow-brand-lime/25 transition hover:brightness-110"
+          >
+            <Lock size={16} /> Unlock all 8 tracks
+          </button>
+        </div>
       )}
       {mounted && unlocked && (
-        <p className="mb-8 inline-flex items-center gap-2 rounded-full bg-brand-lime/15 px-5 py-2.5 text-sm font-semibold text-brand-deep">
+        <p className="mb-8 flex items-center justify-center gap-2 rounded-full bg-brand-lime/15 px-5 py-2.5 text-sm font-semibold text-brand-deep">
           <Unlock size={15} className="text-brand-lime" /> Access unlocked — welcome back.
         </p>
       )}
@@ -85,33 +87,25 @@ export default function CarltonMusicPage() {
         </div>
       )}
 
-      <div className="space-y-6">
-        {TRACKS.map((track) => {
-          const gated = !unlocked;
-          return (
-            <div key={track.file} className="relative">
-              <div className={gated ? "pointer-events-none select-none blur-sm" : ""}>
-                <AudioPlayerGradient
-                  mediaId={mediaIdFor(track.file)}
-                  title={track.title}
-                  artist="Carlton B Reid III"
-                  src={signedUrls[track.file]}
-                  durationFallback={180}
-                />
-              </div>
-              {gated && (
-                <button
-                  onClick={() => setGateOpen(true)}
-                  className="absolute inset-0 flex items-center justify-center rounded-2xl bg-brand-ink/40"
-                >
-                  <span className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-brand-ink shadow-lg">
-                    <Lock size={14} /> Unlock with email
-                  </span>
-                </button>
-              )}
-            </div>
-          );
-        })}
+      <div className="relative">
+        <div className={!unlocked && mounted ? "pointer-events-none select-none blur-sm" : ""}>
+          <AlbumPlayer
+            tracks={TRACKS}
+            sources={unlocked ? signedUrls : {}}
+            artist="Carlton B Reid III"
+            albumTitle="Studio Vault"
+          />
+        </div>
+        {mounted && !unlocked && (
+          <button
+            onClick={() => setGateOpen(true)}
+            className="absolute inset-0 flex items-center justify-center rounded-2xl bg-brand-ink/40"
+          >
+            <span className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-brand-ink shadow-lg">
+              <Lock size={14} /> Unlock with email
+            </span>
+          </button>
+        )}
       </div>
 
       <EmailGateModal

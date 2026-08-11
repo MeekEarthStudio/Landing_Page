@@ -135,8 +135,69 @@ no code changes.
 
 ## Verify
 
-- Visit the `*.hosted.app` URL App Hosting gives you.
+- Visit the `*.hosted.app` URL App Hosting gives you, or the custom domain
+  (`meekearthmusic.com`) once DNS is live.
 - Sign up through the email gate → check Firestore for
   `artifacts/meek-earth-studio/public/data/subscribers/…`
 - Post a reaction on `/music` → appears in `media_reactions` and syncs live
   to other browsers.
+- Confirm `/favicon.ico` and `/robots.txt` return 200 (not 404) on the public URL.
+
+## Public URLs vs raw Cloud Run URLs
+
+**Prefer these for users and crawlers:**
+
+- Custom domain: `https://meekearthmusic.com` (and `www` if configured)
+- Firebase App Hosting default: the `*.hosted.app` URL shown in
+  Firebase Console → App Hosting
+
+**Cloud Run URLs (behind App Hosting):**
+
+App Hosting runs the Next.js container on Cloud Run. You may also see:
+
+- `https://meek-earth-studio-<project-number>.us-east4.run.app/` — often works
+  for unauthenticated GETs when the service already allows public invoke
+- `https://meek-earth-studio-<hash>-uk.a.run.app/` — the older short
+  `*.a.run.app` form
+
+A **403** with
+`The request was not authenticated. Either allow unauthenticated invocations
+or set the proper Authorization header` means Cloud Run IAM rejected the
+request *before* your app ran. That is expected if that URL/revision requires
+authentication. Do **not** treat it as an app bug.
+
+**What to do:**
+
+1. Use the custom domain or `*.hosted.app` URL for production traffic (and for
+   Search Console / crawlers). Those are the intended public fronts.
+2. If you need the raw Cloud Run URL to be publicly openable in a browser,
+   only then grant `roles/run.invoker` to `allUsers` on the App Hosting Cloud
+   Run service (GCP Console → Cloud Run → service → Permissions, or
+   `gcloud run services add-iam-policy-binding …`). Prefer documenting this as
+   a conscious ops choice — App Hosting may already expose the site via its
+   own edge, and org policies sometimes block `allUsers`.
+3. Do not chase 403s on tagged/preview revision URLs; those may intentionally
+   require auth.
+
+## Traffic still on an older revision
+
+After a successful build (e.g. `meek-earth-studio-build-2026-08-11-001`),
+Cloud Run can show:
+
+- `LatestReadyRevisionName` = the new build
+- Traffic `percent: 100` still on an older revision (e.g. `…-2026-08-04-001`)
+- The new revision only has a **tag**, not live traffic
+
+That usually means a **gradual rollout / traffic split was not finished**, or
+App Hosting created a tagged revision without shifting 100% yet.
+
+**Manual check (Firebase / GCP):**
+
+1. Firebase Console → **App Hosting** → your backend → open the latest rollout
+   and confirm it completed / traffic was promoted.
+2. Or GCP Console → **Cloud Run** → `meek-earth-studio` → Revisions →
+   manage traffic → send **100%** to the latest ready revision (or finish the
+   in-progress rollout).
+
+No in-repo `apphosting.yaml` flag forces an immediate 100% cutover for a
+stuck split; promoting traffic is a console / CLI ops step after deploy.
