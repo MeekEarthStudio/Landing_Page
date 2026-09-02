@@ -55,7 +55,7 @@ const CTAS: Cta[] = [
     label: "Open app",
     href: "https://good-samaritan-504806.web.app/",
     external: true,
-    hideOn: ["/good-samaritan"],
+    hideOn: ["/good-samaritan", "/good-samaritan/support"],
   },
 ];
 

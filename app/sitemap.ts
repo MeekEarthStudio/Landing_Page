@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/music/carlton",
     "/documentary",
     "/good-samaritan",
+    "/good-samaritan/support",
   ];
 
   return routes.map((path) => ({

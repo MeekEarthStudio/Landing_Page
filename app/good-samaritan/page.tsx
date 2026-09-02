@@ -1,9 +1,11 @@
+import Link from "next/link";
 import {
   ArrowUpRight,
   BookHeart,
   Check,
   FileArchive,
   HeartHandshake,
+  LifeBuoy,
   MessageCircleHeart,
   ShieldCheck,
   Sparkles,
@@ -11,14 +13,13 @@ import {
   Download,
   CloudOff,
 } from "lucide-react";
+import { GS_APP_URL, GS_PRIVACY_URL, GS_TERMS_URL } from "@/lib/goodSamaritan";
 
 export const metadata = {
   title: "Good Samaritan — Meek Earth STUDIO",
   description:
-    "Christian stewardship PWA for logging giving, service, and gratitude — with AI pastoral chat, video reflections, and built-in safety guardrails.",
+    "Private Christian stewardship journal for logging giving, service, and gratitude — with AI pastoral chat, video reflections, and built-in safety guardrails.",
 };
-
-const APP_URL = "https://good-samaritan-504806.web.app/";
 
 const CAPABILITIES = [
   {
@@ -118,23 +119,32 @@ export default function GoodSamaritanPage() {
           </span>
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-brand-slate">
-          A Christian stewardship Progressive Web App. Log giving, acts of service, and
-          gratitude — then receive AI-grounded pastoral chat and video reflections, with
-          safety built in from the first prompt.
+          A private Christian stewardship journal. Log giving, acts of kindness, and gratitude
+          to God — then receive optional AI pastoral chat and scripture videos, with safety
+          built in from the first prompt.
         </p>
         <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-brand-slate/80">
-          An administrative logging tool and AI reflection assistant — not a CPA, tax advisor,
-          legal representative, or counseling practice. Users remain responsible for verifying
-          donations, receipts, and filings.
+          Sign in with Apple, Google, or email. Nothing you write is posted for other people.
+          This is an administrative log and reflection companion — not clergy, a CPA, a tax
+          advisor, or a counselor. You remain responsible for verifying donations, receipts,
+          and filings.
         </p>
-        <a
-          href={APP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-lime px-8 py-4 font-semibold text-brand-deep shadow-lg shadow-brand-lime/25 transition hover:brightness-110"
-        >
-          Open Good Samaritan <ArrowUpRight size={18} />
-        </a>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <a
+            href={GS_APP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-brand-lime px-8 py-4 font-semibold text-brand-deep shadow-lg shadow-brand-lime/25 transition hover:brightness-110"
+          >
+            Open Good Samaritan <ArrowUpRight size={18} />
+          </a>
+          <Link
+            href="/good-samaritan/support"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-brand-blue px-8 py-4 font-semibold text-brand-blue transition hover:bg-brand-blue hover:text-white"
+          >
+            <LifeBuoy size={18} /> Support &amp; how-to
+          </Link>
+        </div>
       </header>
 
       <section className="mb-20">
@@ -167,8 +177,9 @@ export default function GoodSamaritanPage() {
           </p>
           <h2 className="text-3xl font-bold text-brand-ink">Quotas & pricing</h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm text-brand-slate">
-            Purchases run through Stripe. Manage or cancel in the Customer Portal with the same
-            Google account email. Downgrade or cancel keeps unused text and video balances.
+            On iPhone, digital goods use Apple In-App Purchase. On the web app, purchases use
+            Stripe — manage or cancel in the Customer Portal with the same account email.
+            Downgrade or cancel keeps unused text and video balances.
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -239,19 +250,48 @@ export default function GoodSamaritanPage() {
               Stewardship, logged with care
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-white/70">
-              Sign in with Google at the live PWA. Keep chats limited to stewardship and Good
-              Samaritan purposes. Support:{" "}
-              <span className="text-brand-lime">cbreid3@meekearthstudio.net</span>
+              Keep chats limited to stewardship and Good Samaritan purposes. Need help? Email
+              support from the{" "}
+              <Link href="/good-samaritan/support" className="text-brand-lime underline-offset-2 hover:underline">
+                support page
+              </Link>
+              , or read the{" "}
+              <a
+                href={GS_PRIVACY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-brand-lime underline-offset-2 hover:underline"
+              >
+                Privacy Policy
+              </a>{" "}
+              and{" "}
+              <a
+                href={GS_TERMS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-brand-lime underline-offset-2 hover:underline"
+              >
+                Terms
+              </a>
+              .
             </p>
           </div>
-          <a
-            href={APP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-brand-lime px-7 py-3.5 font-semibold text-brand-deep transition hover:brightness-110"
-          >
-            <Sparkles size={17} /> Launch the app
-          </a>
+          <div className="flex shrink-0 flex-col gap-3">
+            <a
+              href={GS_APP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-lime px-7 py-3.5 font-semibold text-brand-deep transition hover:brightness-110"
+            >
+              <Sparkles size={17} /> Launch the app
+            </a>
+            <Link
+              href="/good-samaritan/support"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-7 py-3.5 font-semibold text-white transition hover:bg-white/10"
+            >
+              <LifeBuoy size={17} /> Get support
+            </Link>
+          </div>
         </div>
       </section>
     </div>

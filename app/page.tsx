@@ -149,11 +149,17 @@ export default function LandingPage() {
                 >
                   See capabilities & safety <ArrowRight size={17} />
                 </Link>
+                <Link
+                  href="/good-samaritan/support"
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-brand-blue px-7 py-3.5 font-semibold text-brand-blue transition hover:bg-brand-blue hover:text-white"
+                >
+                  Support
+                </Link>
                 <a
                   href="https://good-samaritan-504806.web.app/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-brand-blue px-7 py-3.5 font-semibold text-brand-blue transition hover:bg-brand-blue hover:text-white"
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-brand-slate/20 px-7 py-3.5 font-semibold text-brand-ink transition hover:border-brand-ink"
                 >
                   Open the app
                 </a>
