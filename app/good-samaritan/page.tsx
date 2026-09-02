@@ -250,12 +250,13 @@ export default function GoodSamaritanPage() {
               Stewardship, logged with care
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-white/70">
-              Keep chats limited to stewardship and Good Samaritan purposes. Need help? Email
-              support from the{" "}
+              Keep chats limited to stewardship and Good Samaritan purposes. Need help? Read
+              the FAQ on the{" "}
               <Link href="/good-samaritan/support" className="text-brand-lime underline-offset-2 hover:underline">
                 support page
               </Link>
-              , or read the{" "}
+              {" "}
+              first — email unlocks after every section. Or read the{" "}
               <a
                 href={GS_PRIVACY_URL}
                 target="_blank"
