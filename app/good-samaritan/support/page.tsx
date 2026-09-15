@@ -43,10 +43,10 @@ export default function GoodSamaritanSupportPage() {
           <div>
             <h2 className="font-bold text-brand-ink">If you are in crisis</h2>
             <p className="mt-2 text-sm leading-relaxed text-brand-slate">
-              The in-app chat can share <strong>988</strong> (call or text),{" "}
-              <strong>SAMHSA</strong> (1-800-662-4357), and Celebrate Recovery. That is a
-              software referral, not clinical care. If you or someone else is in immediate
-              danger, call emergency services.
+              Good Samaritan is not clinical care. If you need immediate help, call or text{" "}
+              <strong>988</strong>, or call <strong>SAMHSA</strong> at 1-800-662-4357. Celebrate
+              Recovery is another resource. If you or someone else is in immediate danger, call
+              emergency services.
             </p>
           </div>
         </div>
@@ -60,8 +60,8 @@ export default function GoodSamaritanSupportPage() {
           <h2 className="text-3xl font-bold text-brand-ink">Using the app from first launch</h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm text-brand-slate">
             Good Samaritan is a private Christian stewardship journal. You log giving, acts of
-            kindness, and gratitude to God. Optional AI pastoral chat and short scripture videos
-            are a companion — not clergy, a CPA, a tax advisor, or a counselor.
+            kindness, and gratitude to God. It is not clergy, a CPA, a tax advisor, or a
+            counselor.
           </p>
         </div>
         <div className="mb-8 overflow-hidden rounded-2xl border border-brand-slate/15">
@@ -104,12 +104,10 @@ export default function GoodSamaritanSupportPage() {
 
       <section className="mb-16">
         <div className="overflow-x-auto rounded-2xl border border-brand-slate/15">
-          <table className="w-full min-w-[36rem] text-left text-sm">
+          <table className="w-full text-left text-sm">
             <thead className="bg-brand-deep text-white">
               <tr>
                 <th className="px-4 py-3 font-semibold">Plan</th>
-                <th className="px-4 py-3 font-semibold">AI text / month</th>
-                <th className="px-4 py-3 font-semibold">AI video / month</th>
                 <th className="px-4 py-3 font-semibold">Logs</th>
                 <th className="px-4 py-3 font-semibold">Documents + ZIP</th>
               </tr>
@@ -117,35 +115,21 @@ export default function GoodSamaritanSupportPage() {
             <tbody className="text-brand-slate">
               <tr className="border-t border-slate-100">
                 <td className="px-4 py-3 font-semibold text-brand-ink">Free</td>
-                <td className="px-4 py-3">20</td>
-                <td className="px-4 py-3">0</td>
-                <td className="px-4 py-3">50 per category</td>
+                <td className="px-4 py-3">15 per category</td>
                 <td className="px-4 py-3">No</td>
               </tr>
               <tr className="border-t border-slate-100 bg-slate-50/60">
                 <td className="px-4 py-3 font-semibold text-brand-ink">Pro</td>
-                <td className="px-4 py-3">250</td>
-                <td className="px-4 py-3">0 included</td>
                 <td className="px-4 py-3">Unlimited</td>
                 <td className="px-4 py-3">Yes</td>
-              </tr>
-              <tr className="border-t border-slate-100">
-                <td className="px-4 py-3 font-semibold text-brand-ink">Video Pro</td>
-                <td className="px-4 py-3">500</td>
-                <td className="px-4 py-3">8</td>
-                <td className="px-4 py-3">Unlimited</td>
-                <td className="px-4 py-3">Yes</td>
-              </tr>
-              <tr className="border-t border-slate-100 bg-slate-50/60">
-                <td className="px-4 py-3 font-semibold text-brand-ink">Booster Pack (one-time)</td>
-                <td className="px-4 py-3">+450 bonus</td>
-                <td className="px-4 py-3">+12 bonus</td>
-                <td className="px-4 py-3">—</td>
-                <td className="px-4 py-3">—</td>
               </tr>
             </tbody>
           </table>
         </div>
+        <p className="mx-auto mt-4 max-w-2xl text-center text-sm text-brand-slate">
+          Video Pro and Booster are no longer offered in the paywall. An existing Video Pro
+          subscription still unlocks unlimited logs and documents until you cancel it.
+        </p>
       </section>
 
       <section className="mb-16 rounded-2xl border border-brand-slate/15 bg-slate-50 p-6 sm:p-8">
@@ -156,12 +140,10 @@ export default function GoodSamaritanSupportPage() {
         <pre className="overflow-x-auto text-xs leading-relaxed text-brand-slate sm:text-sm">
 {`Welcome (sign in)
   └── Home hub
-        ├── Account icon → quotas, Privacy, Terms, Sign Out, Delete Account
-        ├── AI Pastor Portal → chats, Scripture Video, Plans, history
+        ├── Account icon → plan, Privacy, Terms, Sign Out, Delete Account
         ├── Gratitude Journal → title, reflection, category, save
         ├── Giving → + → Enter Receipt / Upload Document (Pro)
-        ├── Kindness → + → Log Time / Log Act · Bible-character reflection
-        ├── Artifacts → saved videos
+        ├── Kindness → + → Log Time / Log Act
         └── Worship music (Spotify)`}
         </pre>
       </section>

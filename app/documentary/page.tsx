@@ -1,5 +1,3 @@
-import TipButton from "@/components/TipButton";
-
 export const metadata = {
   title: "The Documentary — Meek Earth STUDIO",
   description:
@@ -32,8 +30,6 @@ export default function DocumentaryPage() {
           />
         </div>
       </div>
-
-      <TipButton message="Enjoyed the film? Leave a tip" />
 
       <section className="mt-12 grid gap-6 md:grid-cols-3">
         <div className="rounded-xl border border-brand-lime bg-brand-lime/5 p-8 text-center">

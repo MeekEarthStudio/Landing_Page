@@ -49,7 +49,7 @@ export default function LandingPage() {
             className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-lime/40 bg-brand-lime/10 px-4 py-1.5 text-sm font-medium text-brand-deep"
           >
             <Sparkles size={14} className="text-brand-lime" />
-            Music · Film · Impact
+            Music · Film · Concerts
           </motion.p>
           <motion.h1
             variants={fadeUp}
@@ -138,16 +138,15 @@ export default function LandingPage() {
                 </span>
               </h2>
               <p className="mt-4 max-w-xl text-brand-slate">
-                Christian stewardship logging for giving, service, and gratitude — with AI
-                pastoral chat, video reflections, document exports, and safety guardrails from
-                PII redaction to server-side quotas.
+                A private Christian stewardship journal for giving, service, and gratitude —
+                with receipt documents, ledger export, and an account that stays yours.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   href="/good-samaritan"
                   className="inline-flex items-center gap-2 rounded-full bg-brand-lime px-7 py-3.5 font-semibold text-brand-deep shadow-lg shadow-brand-lime/25 transition hover:brightness-110"
                 >
-                  See capabilities & safety <ArrowRight size={17} />
+                  See the journal <ArrowRight size={17} />
                 </Link>
                 <Link
                   href="/good-samaritan/support"
@@ -169,7 +168,7 @@ export default function LandingPage() {
         </motion.div>
       </section>
 
-      {/* Concert waitlist teaser */}
+      {/* First concert — Form One */}
       <section className="mx-auto max-w-6xl px-4 pb-24">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -185,19 +184,23 @@ export default function LandingPage() {
           <span className="relative mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-brand-lime">
             <Ticket size={22} />
           </span>
+          <p className="relative mb-2 text-sm font-semibold uppercase tracking-widest text-brand-lime">
+            First acoustic concert
+          </p>
           <h2 className="relative text-3xl font-bold sm:text-4xl">
-            Concerts, reimagined —{" "}
+            May{" "}
             <span className="font-serif italic text-brand-lime">2027</span>
           </h2>
           <p className="relative mx-auto mt-4 max-w-xl text-white/70">
-            Transparent, intimate concerts streamed from the comfort of your own home. No
-            hidden fees, no middlemen — you're back in control.
+            A ticketed, livestreamed acoustic show in the DMV, produced in collaboration with
+            one small nonprofit. This is not a benefit show. Your ticket pays the artists and
+            the production.
           </p>
           <Link
-            href="/about"
+            href="/about#concert"
             className="relative mt-8 inline-flex items-center gap-2 rounded-full bg-brand-lime px-8 py-4 font-semibold text-brand-deep shadow-lg shadow-brand-lime/25 transition hover:brightness-110"
           >
-            Join the waitlist <ArrowRight size={17} />
+            Open call &amp; concert details <ArrowRight size={17} />
           </Link>
         </motion.div>
       </section>

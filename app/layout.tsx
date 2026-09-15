@@ -11,7 +11,7 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://meekearthmusic.com"),
-  title: "Meek Earth STUDIO — Music, Film & Impact",
+  title: "Meek Earth STUDIO — Music, Film & Concerts",
   description:
     "Eight original tracks streaming now, an interactive documentary in production, and stories from the studio. Stay tuned.",
   icons: {

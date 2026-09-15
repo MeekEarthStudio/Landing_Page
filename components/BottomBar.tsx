@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Disc3, Heart, HeartHandshake, Music, X } from "lucide-react";
+import { Disc3, HeartHandshake, Music, X } from "lucide-react";
 
 const DISMISS_KEY = "meek-earth-bottombar-dismissed";
 const DISMISS_HOURS = 24;
@@ -32,15 +32,6 @@ const CTAS: Cta[] = [
     hideOn: ["/music/grace"],
   },
   {
-    id: "tip",
-    icon: Heart,
-    text: "Enjoying the music? Support the studio",
-    label: "Leave a tip",
-    href: "https://buy.stripe.com/fZuaEZ64mgFO4FZ2N10ZW00",
-    external: true,
-    hideOn: ["/music/grace"],
-  },
-  {
     id: "tracks",
     icon: Music,
     text: "8 original tracks from Carlton B Reid III",
@@ -51,7 +42,7 @@ const CTAS: Cta[] = [
   {
     id: "good-samaritan",
     icon: HeartHandshake,
-    text: "Good Samaritan — stewardship logging with AI pastoral chat",
+    text: "Good Samaritan — private stewardship journal",
     label: "Open app",
     href: "https://good-samaritan-504806.web.app/",
     external: true,

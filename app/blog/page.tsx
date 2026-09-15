@@ -4,7 +4,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { BookOpen, Bell } from "lucide-react";
 import EmailGateModal from "@/components/EmailGateModal";
-import TipButton from "@/components/TipButton";
 
 // Posts go live here as they're written — empty slots show "Stay Tuned".
 const UPCOMING_SLOTS = [1, 2, 3];
@@ -59,8 +58,6 @@ export default function BlogPage() {
           </button>
         )}
       </div>
-
-      <TipButton message="Support the studio — leave a tip" />
 
       <EmailGateModal
         open={gateOpen}

@@ -19,7 +19,7 @@ import CopyEmailButton, { CONTACT_EMAIL } from "@/components/CopyEmailButton";
 export const metadata = {
   title: "Interactive After Action Reports — Meek Earth STUDIO",
   description:
-    "Polished, mobile-first web pages for nonprofits that account for every event dollar — transparent, donor-ready, and embedded on your site.",
+    "Polished, mobile-first web pages for nonprofits that account for every event dollar — transparent, and embedded on your site.",
 };
 
 const FEATURES = [
@@ -28,7 +28,7 @@ const FEATURES = [
     name: "The Totals Page",
     signature: true,
     description:
-      "Your event's dollar flow, displayed the way we publish our own: gross, costs, and net-to-mission, with every headline number expandable to show where it comes from. Donors don't have to trust you. They can look.",
+      "Your event's dollar flow, displayed the way we publish our own: gross, costs, and net, with every headline number expandable to show where it comes from. Readers don't have to trust a headline. They can look.",
   },
   {
     icon: Sparkles,
@@ -48,7 +48,7 @@ const FEATURES = [
     name: "Embed anywhere",
     signature: false,
     description:
-      "One line of code works on WordPress, Squarespace, Wix, or any site. No plugin, no IT project. The report lives at your web address, in front of your donors.",
+      "One line of code works on WordPress, Squarespace, Wix, or any site. No plugin, no IT project. The report lives at your web address, on your own site.",
   },
   {
     icon: FileDown,
@@ -62,7 +62,7 @@ const FEATURES = [
     name: "Engagement summary",
     signature: false,
     description:
-      "Delivered 30 days after publish — views, time spent, most-read sections — so you learn what actually moved your donors.",
+      "Delivered 30 days after publish — views, time spent, most-read sections — so you learn what people actually read.",
   },
   {
     icon: Layers,
@@ -146,16 +146,18 @@ export default function ServicesPage() {
         </p>
         <div className="mx-auto mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-brand-slate">
           <p>
-            Meek Earth Studio produces transparent benefit concerts where every dollar is
-            accounted for in public: the split is printed on the ticket, and the totals are
-            shared after the show. Now we build that same accountability for your events.
+            Meek Earth Studio produces ticketed acoustic concerts in collaboration with small
+            nonprofits. The ticket is not a gift: it pays the artists and the production. We
+            do not raise, collect, or represent charitable funds. The After Action Report is a
+            paid product we now build for your own events — the same public accounting we use
+            on our shows.
           </p>
           <p>
             An <strong className="font-semibold text-brand-ink">Interactive After Action Report</strong> is a
             polished, mobile-first web page that tells the story of your event and accounts for
-            every dollar — attendance, funds raised, where the money went, and the night itself.
-            You embed it on your own website with a single line of code, link it in your donor
-            emails, and download the matching PDF for your board packet. One event, one page,
+            every dollar — attendance, where the money went, and the night itself.
+            You embed it on your own website with a single line of code, link it from your
+            follow-up emails, and download the matching PDF for your board packet. One event, one page,
             every number sourced.
           </p>
         </div>
@@ -166,7 +168,7 @@ export default function ServicesPage() {
         <div className="mb-10 text-center">
           <h2 className="text-3xl font-bold text-brand-ink">What&apos;s in every report</h2>
           <p className="mt-2 text-brand-slate">
-            Built from the ground up to earn trust and engage donors on any device.
+            Built from the ground up to earn trust on any device.
           </p>
         </div>
 
@@ -185,8 +187,8 @@ export default function ServicesPage() {
               </div>
               <p className="mt-3 text-base leading-relaxed text-brand-slate">
                 Your event&apos;s dollar flow, displayed the way we publish our own: gross,
-                costs, and net-to-mission, with every headline number expandable to show where
-                it comes from. Donors don&apos;t have to trust you. They can look.
+                costs, and net, with every headline number expandable to show where
+                it comes from. Readers don&apos;t have to trust a headline. They can look.
               </p>
             </div>
           </div>
@@ -343,7 +345,7 @@ export default function ServicesPage() {
           <h2 className="text-3xl font-bold text-brand-ink">See one</h2>
           <p className="mx-auto mt-3 max-w-2xl text-brand-slate">
             We publish our own after action reports first — the same format, built from our
-            own concerts, with our own dollars accounted for in public.
+            own concerts, with ticket and production totals accounted for in public.
           </p>
           <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-brand-slate/80">
             Demo coming soon
@@ -368,7 +370,7 @@ export default function ServicesPage() {
                 overflow: "hidden",
                 background: "#000000",
               }}
-              title="Deanwood Concert Impact Report"
+              title="Deanwood Concert After Action Report"
             />
           </div>
         </div>
@@ -392,7 +394,7 @@ export default function ServicesPage() {
                 margin: "0 auto",
                 background: "#000000",
               }}
-              title="Deanwood Concert Impact Report"
+              title="Deanwood Concert After Action Report"
             />
           </div>
         </div>

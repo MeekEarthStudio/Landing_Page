@@ -6,10 +6,8 @@ import {
   FileArchive,
   HeartHandshake,
   LifeBuoy,
-  MessageCircleHeart,
   ShieldCheck,
   Sparkles,
-  Video,
   Download,
   CloudOff,
 } from "lucide-react";
@@ -18,29 +16,19 @@ import { GS_APP_URL, GS_PRIVACY_URL, GS_TERMS_URL } from "@/lib/goodSamaritan";
 export const metadata = {
   title: "Good Samaritan — Meek Earth STUDIO",
   description:
-    "Private Christian stewardship journal for logging giving, service, and gratitude — with AI pastoral chat, video reflections, and built-in safety guardrails.",
+    "Private Christian stewardship journal for logging giving, service, and gratitude — with receipt documents, ledger export, and a private account.",
 };
 
 const CAPABILITIES = [
   {
     icon: BookHeart,
     title: "Stewardship logs",
-    body: "Record giving transactions, acts of service, and gratitude entries as three independent categories. Free Tier: 50 entries per category. Pro and Video Pro: unlimited.",
+    body: "Record giving transactions, acts of service, and gratitude entries as three independent categories. Free Tier: 15 entries per category. Pro: unlimited.",
   },
   {
     icon: FileArchive,
     title: "Documents + ZIP export",
-    body: "Paid tiers can upload receipt images and PDFs, browse Uploaded Documents, and download a ZIP of files. Free users can still Enter Receipt manually within log caps.",
-  },
-  {
-    icon: MessageCircleHeart,
-    title: "AI pastoral chat",
-    body: "Multi-conversation pastoral chat grounded in your stewardship logs and chat history — with PII redaction and NSFW/illegal filtering before anything reaches the model.",
-  },
-  {
-    icon: Video,
-    title: "Veo video reflections",
-    body: "Video Pro generates biblical-to-modern video reflections with narrator and verse lower thirds, stored as Artifacts for later playback.",
+    body: "Paid tiers can upload receipt images and PDFs, browse uploaded documents, and download a ZIP of files. Free users can still Enter Receipt manually within log caps.",
   },
   {
     icon: Download,
@@ -50,34 +38,34 @@ const CAPABILITIES = [
   {
     icon: CloudOff,
     title: "Offline sync",
-    body: "Write entries locally first; a sync queue posts them to the cloud when you’re back online so logs and chats persist across sessions.",
+    body: "Write entries locally first; a sync queue posts them to the cloud when you’re back online so logs persist across sessions.",
   },
 ];
 
 const SAFETY = [
   {
-    title: "Illegal / NSFW filtering",
-    body: "Outbound AI prompts are blocked before they reach Google AI Studio. NSFW is refused immediately; illegal content increments a warning ladder.",
+    title: "Private by design",
+    body: "There is no public feed, no follows, and no messaging other users. Entries stay on your signed-in account.",
   },
   {
-    title: "3 warnings → 4th flags",
-    body: "Illegal-content infractions warn on the first three; the fourth flags the account for admin review and shares Celebrate Recovery help resources.",
+    title: "Log content filter",
+    body: "Organization names and similar log fields are checked on the server. Fraudulent or prohibited text can be rejected.",
   },
   {
-    title: "PII redaction",
-    body: "Emails, phones, addresses, names, URLs, handles, SSNs, and card patterns are replaced with placeholders before Gemini or Veo calls.",
+    title: "Your records, your account",
+    body: "Stewardship records stay tied to your authenticated account. Cloud SQL row-level security isolates user rows.",
   },
   {
-    title: "Anonymous model identity",
-    body: "AI prompts use a stable User_ alias — not email, real name, or Firebase UID — while stewardship records stay tied to your authenticated account.",
+    title: "Account deletion",
+    body: "Delete Account removes your Good Samaritan data — logs, documents, and entitlements. It does not cancel an Apple or Stripe subscription.",
   },
   {
-    title: "Distress referrals",
-    body: "Distress language triggers pastoral support language and professional resources, including 988, SAMHSA, and Celebrate Recovery. Software referral aid — not clinical care.",
+    title: "Not professional advice",
+    body: "This is an administrative log — not clergy, a CPA, a tax advisor, or a counselor. You remain responsible for verifying donations, receipts, and filings.",
   },
   {
-    title: "Server-side quotas",
-    body: "Text, video, free-log caps, and document access are enforced in Postgres with HTTP 402 when limits are reached — not just in the client UI.",
+    title: "Server-side entitlements",
+    body: "Free-log caps and document access are enforced on the server — not just in the client UI.",
   },
 ];
 
@@ -85,23 +73,13 @@ const PLANS = [
   {
     name: "Free",
     price: "$0/mo",
-    items: ["20 AI text / month", "0 AI video", "50 logs per category", "No documents + ZIP"],
+    items: ["15 logs per category", "No documents + ZIP"],
   },
   {
     name: "Pro",
-    price: "$6.99/mo",
-    items: ["250 AI text / month", "0 AI video included", "Unlimited stewardship logs", "Documents + ZIP"],
+    price: "$9.99/mo",
+    items: ["Unlimited stewardship logs", "Documents + ZIP"],
     highlight: true,
-  },
-  {
-    name: "Video Pro",
-    price: "$16.99/mo",
-    items: ["500 AI text / month", "8 AI video / month", "Unlimited stewardship logs", "Documents + ZIP"],
-  },
-  {
-    name: "Booster Pack",
-    price: "$19.99 once",
-    items: ["+450 bonus text", "+12 bonus video", "Credits carry until used", "Does not expire monthly"],
   },
 ];
 
@@ -120,14 +98,12 @@ export default function GoodSamaritanPage() {
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-brand-slate">
           A private Christian stewardship journal. Log giving, acts of kindness, and gratitude
-          to God — then receive optional AI pastoral chat and scripture videos, with safety
-          built in from the first prompt.
+          to God.
         </p>
         <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-brand-slate/80">
           Sign in with Apple, Google, or email. Nothing you write is posted for other people.
-          This is an administrative log and reflection companion — not clergy, a CPA, a tax
-          advisor, or a counselor. You remain responsible for verifying donations, receipts,
-          and filings.
+          This is an administrative log — not clergy, a CPA, a tax advisor, or a counselor. You
+          remain responsible for verifying donations, receipts, and filings.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <a
@@ -151,10 +127,10 @@ export default function GoodSamaritanPage() {
         <div className="mb-10 text-center">
           <h2 className="text-3xl font-bold text-brand-ink">Capabilities</h2>
           <p className="mt-2 text-brand-slate">
-            What the live product does today — stewardship logs, AI reflection, and exports.
+            What the live product does today — stewardship logs, documents, and exports.
           </p>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2">
           {CAPABILITIES.map((item) => (
             <div
               key={item.title}
@@ -178,11 +154,12 @@ export default function GoodSamaritanPage() {
           <h2 className="text-3xl font-bold text-brand-ink">Quotas & pricing</h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm text-brand-slate">
             On iPhone, digital goods use Apple In-App Purchase. On the web app, purchases use
-            Stripe — manage or cancel in the Customer Portal with the same account email.
-            Downgrade or cancel keeps unused text and video balances.
+            Stripe — manage or cancel in the Customer Portal with the same account email. Video
+            Pro and Booster are no longer offered in the paywall. An existing Video Pro
+            subscription still unlocks unlimited logs and documents until you cancel it.
           </p>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-2">
           {PLANS.map((plan) => (
             <div
               key={plan.name}
@@ -219,7 +196,7 @@ export default function GoodSamaritanPage() {
           </p>
           <h2 className="text-3xl font-bold text-brand-ink">Built-in guardrails</h2>
           <p className="mt-2 text-brand-slate">
-            Content filters, PII redaction, distress referrals, and server-side enforcement.
+            A private journal, log content filters, and server-side entitlements.
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2">
@@ -250,8 +227,7 @@ export default function GoodSamaritanPage() {
               Stewardship, logged with care
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-white/70">
-              Keep chats limited to stewardship and Good Samaritan purposes. Need help? Read
-              the FAQ on the{" "}
+              Need help? Read the FAQ on the{" "}
               <Link href="/good-samaritan/support" className="text-brand-lime underline-offset-2 hover:underline">
                 support page
               </Link>

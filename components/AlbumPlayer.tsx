@@ -10,7 +10,6 @@ import {
   MessageCircle,
   Music2,
 } from "lucide-react";
-import TipButton from "@/components/TipButton";
 import { db, PUBLIC_DATA_PATH } from "@/lib/firebase";
 import {
   addDoc,
@@ -59,7 +58,6 @@ export default function AlbumPlayer({
   const [durations, setDurations] = useState<Record<string, number>>({});
   const [reactions, setReactions] = useState<Reaction[]>([]);
   const [comment, setComment] = useState("");
-  const [hasPlayed, setHasPlayed] = useState(false);
   const wantPlayRef = useRef(false);
 
   const track = tracks[index];
@@ -109,7 +107,6 @@ export default function AlbumPlayer({
         void el.play().then(
           () => {
             setPlaying(true);
-            setHasPlayed(true);
           },
           () => setPlaying(false),
         );
@@ -124,7 +121,6 @@ export default function AlbumPlayer({
     if (!src || !el) {
       // No signed URL yet — still toggle UI for gated/preview state.
       setPlaying((p) => !p);
-      if (!playing) setHasPlayed(true);
       return;
     }
     if (playing) {
@@ -136,7 +132,6 @@ export default function AlbumPlayer({
       void el.play().then(
         () => {
           setPlaying(true);
-          setHasPlayed(true);
         },
         () => setPlaying(false),
       );
@@ -205,7 +200,6 @@ export default function AlbumPlayer({
           }}
           onPlay={() => {
             setPlaying(true);
-            setHasPlayed(true);
           }}
           onPause={() => setPlaying(false)}
           onEnded={() => {
@@ -373,7 +367,6 @@ export default function AlbumPlayer({
             Post
           </button>
         </form>
-        <TipButton show={hasPlayed} message="Enjoying the music? Leave a tip" />
       </div>
     </div>
   );
