@@ -11,7 +11,7 @@ const NAV = [
   { href: "/documentary", label: "Documentary" },
   { href: "/blog", label: "Blog" },
   { href: "/good-samaritan", label: "Good Samaritan" },
-  { href: "/services", label: "Services" },
+  { href: "/services", label: "Partner" },
   { href: "/about", label: "About" },
 ];
 
