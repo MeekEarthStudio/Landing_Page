@@ -410,10 +410,10 @@ export default function ServicesPage() {
             <h2 className="text-xl font-bold">How we handle your data</h2>
             <p className="mt-3 text-sm leading-relaxed text-white/80">
               Your files and figures are stored in a private, access-controlled workspace
-              dedicated to your organization and are never used to train AI models. We work from
-              aggregate figures — not donor lists — and when the engagement ends, your data is
-              retained or deleted according to your preference. Every number we publish traces
-              to a source document, and a human verifies every figure before it goes live.
+              dedicated to your organization. We work from aggregate figures — not donor lists —
+              and when the engagement ends, your data is retained or deleted according to your
+              preference. Every number we publish traces to a source document, and a human
+              verifies every figure before it goes live.
             </p>
           </div>
         </div>
