@@ -10,6 +10,7 @@ const NAV = [
   { href: "/music", label: "Music" },
   { href: "/documentary", label: "Documentary" },
   { href: "/blog", label: "Blog" },
+  { href: "/merch", label: "Merch" },
   { href: "/good-samaritan", label: "Good Samaritan" },
   { href: "/services", label: "Partner" },
   { href: "/about", label: "About" },
