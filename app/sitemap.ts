@@ -15,6 +15,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/documentary",
     "/good-samaritan",
     "/good-samaritan/support",
+    "/good-samaritan/privacy",
+    "/good-samaritan/terms",
   ];
 
   return routes.map((path) => ({

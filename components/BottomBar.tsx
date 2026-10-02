@@ -46,7 +46,7 @@ const CTAS: Cta[] = [
     label: "Open app",
     href: "https://good-samaritan-504806.web.app/",
     external: true,
-    hideOn: ["/good-samaritan", "/good-samaritan/support"],
+    hideOn: ["/good-samaritan"],
   },
 ];
 
@@ -56,7 +56,9 @@ export default function BottomBar() {
   const [visible, setVisible] = useState(false);
   const [index, setIndex] = useState(0);
 
-  const ctas = CTAS.filter((c) => !c.hideOn.includes(pathname));
+  const ctas = CTAS.filter(
+    (c) => !c.hideOn.some((p) => pathname === p || pathname.startsWith(`${p}/`)),
+  );
 
   // Appear after a beat, unless dismissed in the last 24h.
   useEffect(() => {

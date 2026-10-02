@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
   BookOpen,
@@ -13,7 +14,7 @@ import {
   Mail,
 } from "lucide-react";
 import CopyEmailButton from "@/components/CopyEmailButton";
-import { GS_MAILTO, GS_PRIVACY_URL, GS_SUPPORT_EMAIL, GS_TERMS_URL } from "@/lib/goodSamaritan";
+import { GS_MAILTO, GS_PRIVACY_PATH, GS_SUPPORT_EMAIL, GS_TERMS_PATH } from "@/lib/goodSamaritan";
 import { FAQ, FAQ_IDS, FAQ_STORAGE_KEY, HELP_CHECKS } from "@/lib/goodSamaritanSupport";
 
 function loadRead(): string[] {
@@ -204,7 +205,7 @@ export default function GoodSamaritanFaqGate() {
                     >
                       {GS_SUPPORT_EMAIL}
                     </a>
-                    . Include the details below so we can find your account and reply faster.
+                    . Include the details below so we can reply faster.
                   </p>
                 </div>
               </div>
@@ -247,23 +248,13 @@ export default function GoodSamaritanFaqGate() {
             </div>
             <div className="border-t border-slate-100 px-6 py-5 text-sm text-brand-slate sm:px-8">
               Read the{" "}
-              <a
-                href={GS_PRIVACY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-brand-blue hover:underline"
-              >
+              <Link href={GS_PRIVACY_PATH} className="font-semibold text-brand-blue hover:underline">
                 Privacy Policy
-              </a>{" "}
+              </Link>{" "}
               and{" "}
-              <a
-                href={GS_TERMS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-brand-blue hover:underline"
-              >
+              <Link href={GS_TERMS_PATH} className="font-semibold text-brand-blue hover:underline">
                 Terms of Service
-              </a>{" "}
+              </Link>{" "}
               anytime.
             </div>
           </>

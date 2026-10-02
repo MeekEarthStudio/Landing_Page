@@ -138,8 +138,9 @@ export default function LandingPage() {
                 </span>
               </h2>
               <p className="mt-4 max-w-xl text-brand-slate">
-                A private Christian stewardship journal for giving, service, and gratitude —
-                with receipt documents, ledger export, and an account that stays yours.
+                A private Christian stewardship journal for iPhone. Giving, kindness, and
+                gratitude stay on your device and in your private iCloud. Sign in with Apple.
+                Optional Pro is $6.99/month.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link

@@ -3,69 +3,69 @@ import {
   ArrowUpRight,
   BookHeart,
   Check,
+  Cloud,
   FileArchive,
   HeartHandshake,
   LifeBuoy,
   ShieldCheck,
   Sparkles,
   Download,
-  CloudOff,
 } from "lucide-react";
-import { GS_APP_URL, GS_PRIVACY_URL, GS_TERMS_URL } from "@/lib/goodSamaritan";
+import { GS_APP_URL, GS_PRIVACY_PATH, GS_TERMS_PATH } from "@/lib/goodSamaritan";
 
 export const metadata = {
   title: "Good Samaritan — Meek Earth STUDIO",
   description:
-    "Private Christian stewardship journal for logging giving, service, and gratitude — with receipt documents, ledger export, and a private account.",
+    "Private Christian stewardship journal for iPhone. Giving, kindness, and gratitude stay on your device and in your private iCloud. Sign in with Apple. Optional Pro is $6.99/month.",
 };
 
 const CAPABILITIES = [
   {
     icon: BookHeart,
     title: "Stewardship logs",
-    body: "Record giving transactions, acts of service, and gratitude entries as three independent categories. Free Tier: 15 entries per category. Pro: unlimited.",
+    body: "Record giving, acts of kindness, and gratitude as three independent categories. Free: 15 entries per category. Pro: unlimited.",
   },
   {
     icon: FileArchive,
     title: "Documents + ZIP export",
-    body: "Paid tiers can upload receipt images and PDFs, browse uploaded documents, and download a ZIP of files. Free users can still Enter Receipt manually within log caps.",
+    body: "Pro can photograph or attach receipt images and PDFs, then download a ZIP. Free users can still Enter Receipt by typing the gift.",
   },
   {
     icon: Download,
     title: "CSV / Excel ledger export",
-    body: "Download a tax-deductible ledger export (date, organization, type, amounts). You remain responsible for verifying accuracy before any tax use.",
+    body: "Download a copy of your giving log (date, organization, type, amounts). You remain responsible for verifying accuracy before any tax use.",
   },
   {
-    icon: CloudOff,
-    title: "Offline sync",
-    body: "Write entries locally first; a sync queue posts them to the cloud when you’re back online so logs persist across sessions.",
+    icon: Cloud,
+    title: "On-device + private iCloud",
+    body: "Your journal lives on this iPhone and restores through your private iCloud. Meek Earth Studio cannot read that database.",
   },
 ];
 
 const SAFETY = [
   {
     title: "Private by design",
-    body: "There is no public feed, no follows, and no messaging other users. Entries stay on your signed-in account.",
+    body: "There is no public feed, no follows, and no messaging other users. Entries stay on the device and in your private iCloud.",
   },
   {
-    title: "Log content filter",
-    body: "Organization names and similar log fields are checked on the server. Fraudulent or prohibited text can be rejected.",
+    title: "Sign in with Apple",
+    body: "The iPhone app requests no email or name from Apple. Identity is Apple’s user identifier stored on the device.",
   },
   {
-    title: "Your records, your account",
-    body: "Stewardship records stay tied to your authenticated account. Cloud SQL row-level security isolates user rows.",
+    title: "Optional mailing list",
+    body: "If you type an address on the hub card, it goes only to Kit for concert, music, and devotionals letters — not into your journal.",
   },
   {
     title: "Account deletion",
-    body: "Delete Account removes your Good Samaritan data — logs, documents, and entitlements. It does not cancel an Apple or Stripe subscription.",
+    body: "Delete Account wipes the on-device journal and the private iCloud copy. It does not cancel an Apple subscription.",
   },
   {
     title: "Not professional advice",
     body: "This is an administrative log — not clergy, a CPA, a tax advisor, or a counselor. You remain responsible for verifying donations, receipts, and filings.",
   },
   {
-    title: "Server-side entitlements",
-    body: "Free-log caps and document access are enforced on the server — not just in the client UI.",
+    title: "Apple billing",
+    body: "Pro is billed by Apple through StoreKit. Manage or cancel from Account → Manage Subscription, from Plans, or in iPhone Settings.",
   },
 ];
 
@@ -77,7 +77,7 @@ const PLANS = [
   },
   {
     name: "Pro",
-    price: "$9.99/mo",
+    price: "$6.99/mo",
     items: ["Unlimited stewardship logs", "Documents + ZIP"],
     highlight: true,
   },
@@ -85,7 +85,7 @@ const PLANS = [
 
 export default function GoodSamaritanPage() {
   return (
-    <div className="mx-auto max-w-5xl px-4 py-14">
+    <div className="mx-auto max-w-5xl px-4 py-14 pb-28">
       <header className="mb-16 text-center">
         <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-brand-blue">
           Product
@@ -97,13 +97,13 @@ export default function GoodSamaritanPage() {
           </span>
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-brand-slate">
-          A private Christian stewardship journal. Log giving, acts of kindness, and gratitude
-          to God.
+          A private Christian stewardship journal for iPhone. Log giving, acts of kindness, and
+          gratitude to God.
         </p>
         <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-brand-slate/80">
-          Sign in with Apple, Google, or email. Nothing you write is posted for other people.
-          This is an administrative log — not clergy, a CPA, a tax advisor, or a counselor. You
-          remain responsible for verifying donations, receipts, and filings.
+          Sign in with Apple. Your journal stays on this device and in your private iCloud. This is
+          an administrative log — not clergy, a CPA, a tax advisor, or a counselor. You remain
+          responsible for verifying donations, receipts, and filings.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <a
@@ -127,7 +127,7 @@ export default function GoodSamaritanPage() {
         <div className="mb-10 text-center">
           <h2 className="text-3xl font-bold text-brand-ink">Capabilities</h2>
           <p className="mt-2 text-brand-slate">
-            What the live product does today — stewardship logs, documents, and exports.
+            What the iPhone app does today — stewardship logs, documents, and private iCloud restore.
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2">
@@ -153,10 +153,10 @@ export default function GoodSamaritanPage() {
           </p>
           <h2 className="text-3xl font-bold text-brand-ink">Quotas & pricing</h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm text-brand-slate">
-            On iPhone, digital goods use Apple In-App Purchase. On the web app, purchases use
-            Stripe — manage or cancel in the Customer Portal with the same account email. Video
-            Pro and Booster are no longer offered in the paywall. An existing Video Pro
-            subscription still unlocks unlimited logs and documents until you cancel it.
+            Digital goods use Apple In-App Purchase. Manage or cancel from Account → Manage
+            Subscription, from Plans, or in iPhone Settings → Apple ID → Subscriptions. Video Pro
+            and Booster are not offered on the paywall. An existing Video Pro subscription still
+            unlocks unlimited logs and documents until you cancel it.
           </p>
         </div>
         <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-2">
@@ -196,7 +196,7 @@ export default function GoodSamaritanPage() {
           </p>
           <h2 className="text-3xl font-bold text-brand-ink">Built-in guardrails</h2>
           <p className="mt-2 text-brand-slate">
-            A private journal, log content filters, and server-side entitlements.
+            A private journal on your iPhone, with Apple billing and an optional mailing list.
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2">
@@ -233,23 +233,13 @@ export default function GoodSamaritanPage() {
               </Link>
               {" "}
               first — email unlocks after every section. Or read the{" "}
-              <a
-                href={GS_PRIVACY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-brand-lime underline-offset-2 hover:underline"
-              >
+              <Link href={GS_PRIVACY_PATH} className="text-brand-lime underline-offset-2 hover:underline">
                 Privacy Policy
-              </a>{" "}
+              </Link>{" "}
               and{" "}
-              <a
-                href={GS_TERMS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-brand-lime underline-offset-2 hover:underline"
-              >
+              <Link href={GS_TERMS_PATH} className="text-brand-lime underline-offset-2 hover:underline">
                 Terms
-              </a>
+              </Link>
               .
             </p>
           </div>

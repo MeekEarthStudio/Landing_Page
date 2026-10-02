@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, BookOpen, ShieldAlert } from "lucide-react";
-import { GS_APP_URL } from "@/lib/goodSamaritan";
-import { SIGN_IN, TUTORIAL } from "@/lib/goodSamaritanSupport";
+import { GS_APP_URL, GS_PRIVACY_PATH, GS_TERMS_PATH } from "@/lib/goodSamaritan";
+import { TUTORIAL } from "@/lib/goodSamaritanSupport";
 import GoodSamaritanFaqGate from "@/components/GoodSamaritanFaqGate";
 
 export const metadata = {
@@ -24,8 +24,9 @@ export default function GoodSamaritanSupportPage() {
           </span>
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-brand-slate">
-          Start with the walkthrough and FAQ. Email support is at the bottom of this page, and
-          it only appears after you open and mark every FAQ section as read.
+          Start with the walkthrough and FAQ for the iPhone journal (Sign in with Apple, private
+          iCloud, Pro $6.99/month). Email support is at the bottom of this page, and it only
+          appears after you open and mark every FAQ section as read.
         </p>
         <a
           href={GS_APP_URL}
@@ -59,28 +60,10 @@ export default function GoodSamaritanSupportPage() {
           </p>
           <h2 className="text-3xl font-bold text-brand-ink">Using the app from first launch</h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm text-brand-slate">
-            Good Samaritan is a private Christian stewardship journal. You log giving, acts of
-            kindness, and gratitude to God. It is not clergy, a CPA, a tax advisor, or a
-            counselor.
+            Good Samaritan is a private Christian stewardship journal on iPhone. You log giving,
+            acts of kindness, and gratitude to God. Sign in with Apple only — the app does not
+            ask Apple for your email. It is not clergy, a CPA, a tax advisor, or a counselor.
           </p>
-        </div>
-        <div className="mb-8 overflow-hidden rounded-2xl border border-brand-slate/15">
-          <table className="w-full text-left text-sm">
-            <thead className="bg-brand-deep text-white">
-              <tr>
-                <th className="px-4 py-3 font-semibold">Sign-in option</th>
-                <th className="px-4 py-3 font-semibold">When to use it</th>
-              </tr>
-            </thead>
-            <tbody>
-              {SIGN_IN.map((row) => (
-                <tr key={row.option} className="border-t border-slate-100 odd:bg-slate-50/60">
-                  <td className="px-4 py-3 font-semibold text-brand-ink">{row.option}</td>
-                  <td className="px-4 py-3 text-brand-slate">{row.when}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
         </div>
         <ol className="space-y-4">
           {TUTORIAL.map((step) => (
@@ -127,7 +110,8 @@ export default function GoodSamaritanSupportPage() {
           </table>
         </div>
         <p className="mx-auto mt-4 max-w-2xl text-center text-sm text-brand-slate">
-          Video Pro and Booster are no longer offered in the paywall. An existing Video Pro
+          Pro is $6.99/month through Apple. Manage Subscription is in Account and on Plans.
+          Video Pro and Booster are not offered on the paywall. An existing Video Pro
           subscription still unlocks unlimited logs and documents until you cancel it.
         </p>
       </section>
@@ -138,13 +122,14 @@ export default function GoodSamaritanSupportPage() {
           <h2 className="text-xl font-bold text-brand-ink">Quick map of the screens</h2>
         </div>
         <pre className="overflow-x-auto text-xs leading-relaxed text-brand-slate sm:text-sm">
-{`Welcome (sign in)
+{`Welcome (Sign in with Apple)
   └── Home hub
-        ├── Account icon → plan, Privacy, Terms, Sign Out, Delete Account
+        ├── Account icon → plan, Plans, Manage Subscription, Privacy, Terms, Sign Out, Delete Account
         ├── Gratitude Journal → title, reflection, category, save
         ├── Giving → + → Enter Receipt / Upload Document (Pro)
         ├── Kindness → + → Log Time / Log Act
-        └── Worship music (Spotify)`}
+        ├── Worship music (Spotify)
+        └── Optional Kit mailing card`}
         </pre>
       </section>
 
@@ -153,6 +138,14 @@ export default function GoodSamaritanSupportPage() {
       <p className="text-center text-sm text-brand-slate">
         <Link href="/good-samaritan" className="font-semibold text-brand-blue hover:underline">
           ← Back to Good Samaritan
+        </Link>
+        {" · "}
+        <Link href={GS_PRIVACY_PATH} className="font-semibold text-brand-blue hover:underline">
+          Privacy
+        </Link>
+        {" · "}
+        <Link href={GS_TERMS_PATH} className="font-semibold text-brand-blue hover:underline">
+          Terms
         </Link>
       </p>
     </div>
